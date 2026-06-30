@@ -322,6 +322,27 @@
     .footer a{color:#C7D6EC}
     .mini{font-size:.82rem;color:#8999B3}
 
+
+    .terminal,
+    .output-terminal{
+      overflow:auto;
+      scrollbar-width:thin;
+      scrollbar-color:rgba(36,215,255,.45) rgba(255,255,255,.05);
+    }
+    .terminal{max-height:250px}
+    .output-terminal{max-height:470px}
+    .terminal::-webkit-scrollbar,
+    .output-terminal::-webkit-scrollbar{width:8px}
+    .terminal::-webkit-scrollbar-thumb,
+    .output-terminal::-webkit-scrollbar-thumb{background:rgba(36,215,255,.35);border-radius:999px}
+    .terminal.live:after,
+    .output-terminal.live:after{
+      content:"";
+      display:inline-block;width:10px;height:1.08em;vertical-align:-.15em;margin-left:4px;
+      background:#9EF0FF;box-shadow:0 0 12px rgba(158,240,255,.45);
+      animation:blinkCursor 1s steps(1,end) infinite;
+    }
+
     @media(max-width:1060px){
       .nav-links{display:none}
       .hero-grid,.grid-2,.sim-grid,.deployment{grid-template-columns:1fr}
@@ -940,73 +961,130 @@ Execution becomes visible without replacing existing tools.`
       }
     };
 
-    let heroTimer = null;
-    let heroRestartTimer = null;
-    let simTimer = null;
-    let simRestartTimer = null;
+    const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+    let heroToken = 0;
+    let scenarioToken = 0;
     let activeScenarioKey = "customer";
-    let simCycle = 1;
 
-    function typeOnce(target, text, speed, onDone){
-      target.textContent = "";
-      target.classList.add("typing");
-      let i = 0;
-      const timer = setInterval(() => {
-        target.textContent = text.slice(0, i);
-        i++;
-        if(i > text.length){
-          clearInterval(timer);
-          target.textContent = text;
-          target.classList.remove("typing");
-          if(typeof onDone === "function"){ onDone(); }
-        }
-      }, speed);
-      return timer;
+    const heroLiveLines = [
+      "> heartbeat: workflow monitor active",
+      "> checking approval gates... active",
+      "> scanning task graph... no blockers",
+      "> syncing business memory... ready",
+      "> owner dashboard stream... online",
+      "> agent layer status... supervised autonomy"
+    ];
+
+    const scenarioLiveLines = {
+      customer: [
+        "[live] new customer signal scan complete",
+        "[live] follow-up queue refreshed",
+        "[live] owner summary delta updated",
+        "[live] approval gate waiting for human confirmation"
+      ],
+      sales: [
+        "[live] quotation queue scanned",
+        "[live] high-value lead detector active",
+        "[live] pending quote follow-up scheduled",
+        "[live] pipeline value recalculated"
+      ],
+      support: [
+        "[live] ticket urgency classifier active",
+        "[live] repeated issue scan complete",
+        "[live] escalation route verified",
+        "[live] support summary updating"
+      ],
+      documents: [
+        "[live] document index watcher active",
+        "[live] missing-field detector ready",
+        "[live] citation-safe extraction enabled",
+        "[live] review checkpoint waiting"
+      ],
+      payments: [
+        "[live] overdue amount scan complete",
+        "[live] reminder tone rules active",
+        "[live] collection priority queue refreshed",
+        "[live] approval required before reminder"
+      ],
+      operations: [
+        "[live] execution dependency graph scanned",
+        "[live] delayed task detector active",
+        "[live] team ownership map refreshed",
+        "[live] bottleneck summary updating"
+      ]
+    };
+
+    function nowTime(){
+      return new Date().toLocaleTimeString([], {hour:"2-digit", minute:"2-digit", second:"2-digit"});
     }
 
-    function typeHero(){
+    function autoScroll(target){
+      target.scrollTop = target.scrollHeight;
+    }
+
+    async function typeAppend(target, text, speed, isActive){
+      target.classList.add("live");
+      for(let i = 0; i < text.length; i++){
+        if(!isActive()){ return false; }
+        target.textContent += text[i];
+        autoScroll(target);
+        await sleep(speed);
+      }
+      return true;
+    }
+
+    function trimLines(target, maxLines){
+      const lines = target.textContent.split("\n");
+      if(lines.length > maxLines){
+        target.textContent = lines.slice(lines.length - maxLines).join("\n");
+        autoScroll(target);
+      }
+    }
+
+    async function startHeroTerminal(){
+      const token = ++heroToken;
       const target = document.getElementById("heroTerminal");
-      clearInterval(heroTimer);
-      clearTimeout(heroRestartTimer);
+      target.textContent = "";
+      target.classList.add("live");
 
-      const cycleLine = `> live cycle: ${new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit', second:'2-digit'})}`;
-      const text = [...heroLines, cycleLine, "> monitoring workflow graph..."].join("\n");
+      const bootText = heroLines.join("\n") + "\n> live monitor started @ " + nowTime();
+      await typeAppend(target, bootText, 16, () => token === heroToken);
 
-      heroTimer = typeOnce(target, text, 18, () => {
-        heroRestartTimer = setTimeout(typeHero, 1800);
-      });
+      let i = 0;
+      while(token === heroToken){
+        const line = heroLiveLines[i % heroLiveLines.length];
+        await sleep(550);
+        await typeAppend(target, "\n" + line + " [" + nowTime() + "]", 9, () => token === heroToken);
+        trimLines(target, 18);
+        i++;
+      }
     }
 
-    function buildSimText(baseText){
-      const time = new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit', second:'2-digit'});
-      return `${baseText}
-
-[cycle ${String(simCycle).padStart(2, "0")}] live check @ ${time}
-[scan] pending actions: mapped
-[scan] approval gates: active
-[scan] owner dashboard: updating
-[status] simulation loop active`;
-    }
-
-    function typeScenarioLoop(){
+    async function startScenarioTerminal(key){
+      const token = ++scenarioToken;
       const target = document.getElementById("simOutput");
-      const s = scenarios[activeScenarioKey];
+      const scenario = scenarios[key];
+      target.textContent = "";
+      target.classList.add("live");
 
-      clearInterval(simTimer);
-      clearTimeout(simRestartTimer);
+      const bootText = scenario.output + "\n\n[live] monitor started @ " + nowTime();
+      await typeAppend(target, bootText, 8, () => token === scenarioToken);
 
-      const liveText = buildSimText(s.output);
-      simTimer = typeOnce(target, liveText, 9, () => {
-        simCycle += 1;
-        simRestartTimer = setTimeout(typeScenarioLoop, 1600);
-      });
+      let i = 0;
+      while(token === scenarioToken){
+        const liveLines = scenarioLiveLines[key] || scenarioLiveLines.customer;
+        const line = liveLines[i % liveLines.length];
+        await sleep(520);
+        await typeAppend(target, "\n" + line + " [" + nowTime() + "]", 8, () => token === scenarioToken);
+        trimLines(target, 32);
+        i++;
+      }
     }
 
     function renderScenario(key){
       activeScenarioKey = key;
-      simCycle = 1;
-
       const s = scenarios[key];
+
       document.getElementById("workflowSteps").innerHTML = s.steps.map((step, idx) => `
         <div class="step">
           <span class="step-num">${idx + 1}</span>
@@ -1014,12 +1092,12 @@ Execution becomes visible without replacing existing tools.`
         </div>
       `).join("");
 
-      typeScenarioLoop();
+      startScenarioTerminal(key);
     }
 
     document.getElementById("scenarioSelect").addEventListener("change", e => renderScenario(e.target.value));
     renderScenario("customer");
-    typeHero();
+    startHeroTerminal();
 
     document.getElementById("demoForm").addEventListener("submit", function(e){
       e.preventDefault();
