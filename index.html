@@ -519,7 +519,7 @@
             <div>
               <p class="eyebrow">Workflow Studio</p>
               <h2>Live simulator for business problems.</h2>
-              <p>This public simulator shows the agent planning style. Full operational demos are shown only after a guided demo request.</p>
+              <p>This public simulator shows a continuously running execution console. Full operational demos are shown only after a guided demo request.</p>
             </div>
             <label class="select-wrap">
               Business problem
@@ -940,45 +940,72 @@ Execution becomes visible without replacing existing tools.`
       }
     };
 
-    let typingTimer = null;
     let heroTimer = null;
+    let heroRestartTimer = null;
+    let simTimer = null;
+    let simRestartTimer = null;
+    let activeScenarioKey = "customer";
+    let simCycle = 1;
 
-    function typeText(target, text, speed = 12){
-      if(typingTimer){ clearInterval(typingTimer); }
+    function typeOnce(target, text, speed, onDone){
       target.textContent = "";
       target.classList.add("typing");
       let i = 0;
-      typingTimer = setInterval(() => {
+      const timer = setInterval(() => {
         target.textContent = text.slice(0, i);
         i++;
         if(i > text.length){
-          clearInterval(typingTimer);
+          clearInterval(timer);
           target.textContent = text;
           target.classList.remove("typing");
+          if(typeof onDone === "function"){ onDone(); }
         }
       }, speed);
+      return timer;
     }
 
     function typeHero(){
       const target = document.getElementById("heroTerminal");
-      if(heroTimer){ clearInterval(heroTimer); }
-      target.textContent = "";
-      target.classList.add("typing");
-      const text = heroLines.join("\n");
-      let i = 0;
-      heroTimer = setInterval(() => {
-        target.textContent = text.slice(0, i);
-        i++;
-        if(i > text.length){
-          clearInterval(heroTimer);
-          target.textContent = text;
-          target.classList.remove("typing");
-          setTimeout(typeHero, 5200);
-        }
-      }, 18);
+      clearInterval(heroTimer);
+      clearTimeout(heroRestartTimer);
+
+      const cycleLine = `> live cycle: ${new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit', second:'2-digit'})}`;
+      const text = [...heroLines, cycleLine, "> monitoring workflow graph..."].join("\n");
+
+      heroTimer = typeOnce(target, text, 18, () => {
+        heroRestartTimer = setTimeout(typeHero, 1800);
+      });
+    }
+
+    function buildSimText(baseText){
+      const time = new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit', second:'2-digit'});
+      return `${baseText}
+
+[cycle ${String(simCycle).padStart(2, "0")}] live check @ ${time}
+[scan] pending actions: mapped
+[scan] approval gates: active
+[scan] owner dashboard: updating
+[status] simulation loop active`;
+    }
+
+    function typeScenarioLoop(){
+      const target = document.getElementById("simOutput");
+      const s = scenarios[activeScenarioKey];
+
+      clearInterval(simTimer);
+      clearTimeout(simRestartTimer);
+
+      const liveText = buildSimText(s.output);
+      simTimer = typeOnce(target, liveText, 9, () => {
+        simCycle += 1;
+        simRestartTimer = setTimeout(typeScenarioLoop, 1600);
+      });
     }
 
     function renderScenario(key){
+      activeScenarioKey = key;
+      simCycle = 1;
+
       const s = scenarios[key];
       document.getElementById("workflowSteps").innerHTML = s.steps.map((step, idx) => `
         <div class="step">
@@ -986,7 +1013,8 @@ Execution becomes visible without replacing existing tools.`
           <div><strong>${step[0]}</strong><p>${step[1]}</p></div>
         </div>
       `).join("");
-      typeText(document.getElementById("simOutput"), s.output, 9);
+
+      typeScenarioLoop();
     }
 
     document.getElementById("scenarioSelect").addEventListener("change", e => renderScenario(e.target.value));
