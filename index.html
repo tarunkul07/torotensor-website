@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ToroTensor Technologies | AI Operations Agents</title>
-  <meta name="description" content="ToroTensor builds AI Operations Agents that turn customer messages, emails, PDFs, spreadsheets, and daily business inputs into automated actions, follow-ups, reports, and workflows." />
+  <title>ToroTensor Technologies | Guided AI Operations Agents</title>
+  <meta name="description" content="ToroTensor builds Guided AI Operations Agents that turn customer messages, emails, PDFs, spreadsheets, and daily business inputs into automated actions, follow-ups, reports, and workflows." />
   <meta name="theme-color" content="#061832" />
 
-  <meta property="og:title" content="ToroTensor Technologies | AI Operations Agents" />
-  <meta property="og:description" content="From messages to actions. Automatically." />
+  <meta property="og:title" content="ToroTensor Technologies | Guided AI Operations Agents" />
+  <meta property="og:description" content="From messages to actions — shown through a guided demo." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://torotensor.com/" />
   <meta property="og:image" content="https://torotensor.com/assets/og-image.svg" />
@@ -350,6 +350,27 @@
     .reveal{opacity:0;transform:translateY(18px);transition:.65s ease}
     .reveal.visible{opacity:1;transform:translateY(0)}
 
+
+    .form-note{margin:0;color:#667085;font-size:.92rem;font-weight:750}
+    .demo-lock{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:14px 16px;
+      border-radius:18px;
+      background:#FFF7ED;
+      color:#9A3412;
+      border:1px solid #FED7AA;
+      font-weight:900;
+    }
+    .demo-lock span{
+      width:34px;height:34px;border-radius:50%;
+      display:grid;place-items:center;
+      background:white;
+      color:var(--orange);
+      box-shadow:0 8px 18px rgba(255,106,0,.12);
+    }
+
     @media(max-width:1080px){
       .nav-links{display:none;position:absolute;left:4%;right:4%;top:88px;background:white;border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:18px;flex-direction:column;align-items:flex-start}
       .nav-links.open{display:flex}
@@ -361,6 +382,27 @@
       .logo-strip{grid-template-columns:repeat(2,1fr)}
       .logo-title{grid-column:1 / -1}
     }
+
+    .form-note{margin:0;color:#667085;font-size:.92rem;font-weight:750}
+    .demo-lock{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:14px 16px;
+      border-radius:18px;
+      background:#FFF7ED;
+      color:#9A3412;
+      border:1px solid #FED7AA;
+      font-weight:900;
+    }
+    .demo-lock span{
+      width:34px;height:34px;border-radius:50%;
+      display:grid;place-items:center;
+      background:white;
+      color:var(--orange);
+      box-shadow:0 8px 18px rgba(255,106,0,.12);
+    }
+
     @media(max-width:720px){
       .nav-inner{min-height:74px}
       .brand-text small{display:none}
@@ -391,11 +433,11 @@
         <a href="#clients">Clients</a>
         <a href="#workflow">Workflow</a>
         <a href="#security">Security</a>
-        <a href="/demo/">Live Demo</a>
+        <a href="#request-demo">Request Demo</a>
       </div>
 
       <div class="nav-actions">
-        <a class="btn btn-secondary" href="/demo/">Launch Demo</a>
+        <a class="btn btn-secondary" href="#request-demo">Book Guided Demo</a>
         <a class="btn btn-primary" href="#request-demo">Request Demo</a>
         <button class="mobile-toggle" id="mobileToggle" aria-label="Open menu">Menu</button>
       </div>
@@ -406,13 +448,13 @@
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-copy reveal">
-          <p class="eyebrow">AI Operations Agents</p>
+          <p class="eyebrow">Guided AI Operations Agents</p>
           <h1>From messages to <span class="gradient-text">business actions.</span></h1>
-          <p class="lead">ToroTensor builds AI Operations Agents that convert customer messages, emails, PDFs, spreadsheets, and daily business inputs into automated leads, quotations, follow-ups, tasks, reminders, and owner reports.</p>
+          <p class="lead">ToroTensor builds Guided AI Operations Agents that convert customer messages, emails, PDFs, spreadsheets, and daily business inputs into automated leads, quotations, follow-ups, tasks, reminders, and owner reports.</p>
 
           <div class="hero-actions">
-            <a class="btn btn-primary" href="/demo/">Launch Interactive Demo</a>
-            <a class="btn btn-secondary" href="#request-demo">Request a Business Demo</a>
+            <a class="btn btn-primary" href="#request-demo">Request Guided Demo</a>
+            <a class="btn btn-secondary" href="#workflow">See Workflow</a>
           </div>
           <p class="hero-note">Built for WhatsApp-first, email-heavy, document-driven businesses that need execution, not another dashboard.</p>
 
@@ -460,7 +502,7 @@
 
           <div class="floating-card">
             <strong>One agent. Multiple industries.</strong>
-            <p>The demo adapts for training institutes, clinics, dealers, distributors, real estate, and service businesses.</p>
+            <p>The guided demo is customized for the client segment before we show it.</p>
           </div>
         </div>
       </div>
@@ -559,13 +601,14 @@
           <div>
             <p class="eyebrow">Interactive demo</p>
             <h2>Show clients a working business scenario, not a slide deck.</h2>
-            <p>The demo changes by target segment. Select training institute, clinic, dealer, distributor, real estate, or service business and see dummy real-world data, agent actions, dynamic forms, pipeline, tasks, and owner reports.</p>
+            <p>We do not keep the full product demo open publicly. The visitor first shares their business segment and workflow. Then we show a guided, segment-specific demo with realistic dummy data, agent actions, dynamic forms, pipeline, tasks, and owner reports.</p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="/demo/">Open Live Demo</a>
+              <a class="btn btn-primary" href="#request-demo">Request Guided Demo</a>
               <a class="btn btn-dark" href="#request-demo">Book Guided Walkthrough</a>
             </div>
           </div>
-          <div class="demo-preview" aria-label="Demo features">
+          <div class="demo-preview" aria-label="Guided demo features">
+            <div class="demo-lock"><span>🔒</span> Public demo access is disabled. Request details first, then show a guided demo.</div>
             <div class="preview-row"><span>Target client dropdown</span><span>Working</span></div>
             <div class="preview-row"><span>Dummy inbox data</span><span>Working</span></div>
             <div class="preview-row"><span>Agent extraction</span><span>Working</span></div>
@@ -620,8 +663,8 @@
         <div class="integration-copy reveal">
           <p class="eyebrow">Integrations</p>
           <h2>Connect the places where business already happens.</h2>
-          <p>Start simple with demo workflows and spreadsheets. Later connect WhatsApp Business API, Gmail/Outlook, CRM, accounting tools, and a real database.</p>
-          <a class="btn btn-secondary" href="/demo/">See the workflow demo</a>
+          <p>Start with a guided workflow demo and sample data. After client qualification, connect WhatsApp Business API, Gmail/Outlook, CRM, accounting tools, and a real database.</p>
+          <a class="btn btn-secondary" href="#request-demo">Request Guided Workflow Demo</a>
         </div>
         <div class="integration-map reveal">
           <div class="integration-node">WhatsApp</div>
@@ -664,7 +707,7 @@
           <p>Pricing can be customized, but the structure should remain simple enough for quick client decisions.</p>
         </div>
         <div class="pricing-grid">
-          <article class="pricing-card reveal"><h3>Starter Pilot</h3><div class="price">₹15k–₹35k</div><p>One workflow demo with dummy or sample client data.</p><ul><li>1 target segment</li><li>1 workflow</li><li>Demo dashboard</li><li>Basic report</li></ul></article>
+          <article class="pricing-card reveal"><h3>Starter Pilot</h3><div class="price">₹15k–₹35k</div><p>One guided workflow prototype with dummy or sample client data.</p><ul><li>1 target segment</li><li>1 workflow</li><li>Guided dashboard walkthrough</li><li>Basic report</li></ul></article>
           <article class="pricing-card featured reveal"><h3>Business Agent Setup</h3><div class="price">₹75k–₹2.5L</div><p>Production-ready workflow setup for daily operations.</p><ul><li>3–5 workflows</li><li>Custom forms</li><li>Pipeline and reports</li><li>Team training</li></ul></article>
           <article class="pricing-card reveal"><h3>Monthly Support</h3><div class="price">₹10k–₹50k <small>/ month</small></div><p>Recurring improvement, support, updates, and workflow expansion.</p><ul><li>Maintenance</li><li>Prompt/report updates</li><li>New workflows</li><li>Priority support</li></ul></article>
         </div>
@@ -675,8 +718,8 @@
       <div class="container contact-grid">
         <div class="contact-card dark reveal">
           <p class="eyebrow">Request demo</p>
-          <h2>Ready to show a working AI agent to your clients?</h2>
-          <p>Tell us the target client segment and workflow. We will map the demo around real business outcomes: leads, quotes, follow-ups, tasks, and reports.</p>
+          <h2>Request a guided AI agent demo.</h2>
+          <p>Share your business segment and workflow. We will schedule a meeting and show a customized demo around real outcomes: leads, quotes, follow-ups, tasks, reports, and owner visibility.</p>
           <div class="contact-links">
             <a class="contact-link" href="mailto:info@torotensor.com"><span>info@torotensor.com</span><span>Send email</span></a>
             <a class="contact-link" href="tel:+919758916888"><span>+91 9758916888</span><span>Call</span></a>
@@ -699,8 +742,11 @@
               <option>Other</option>
             </select>
           </label>
+          <label>Preferred meeting date<input id="meetingDate" name="meetingDate" type="date"></label>
+          <label>Preferred time<input id="meetingTime" name="meetingTime" type="text" placeholder="Example: 4 PM IST"></label>
           <label class="full">Workflow to automate<textarea id="message" name="message" rows="5" placeholder="Example: WhatsApp enquiries to quotations, follow-ups, and daily owner report"></textarea></label>
-          <button class="btn btn-primary full" type="submit">Send Demo Request</button>
+          <button class="btn btn-primary full" type="submit">Request Guided Demo</button>
+          <p class="form-note full">Demo access is shared only after we receive the request and understand the client segment.</p>
         </form>
       </div>
     </section>
@@ -710,7 +756,7 @@
     <div class="container footer-inner">
       <div>© <span id="year"></span> ToroTensor Technologies Pvt Ltd. All rights reserved.</div>
       <div class="footer-links">
-        <a href="/demo/">Live Demo</a>
+        <a href="#request-demo">Request Demo</a>
         <a href="mailto:info@torotensor.com">info@torotensor.com</a>
         <a href="https://www.linkedin.com/in/tarun-kulshrestha-b26a6622/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
@@ -740,9 +786,11 @@
       const email = document.getElementById('email').value.trim();
       const phone = document.getElementById('phone').value.trim();
       const segment = document.getElementById('segment').value;
+      const meetingDate = document.getElementById('meetingDate').value.trim();
+      const meetingTime = document.getElementById('meetingTime').value.trim();
       const message = document.getElementById('message').value.trim();
       const subject = encodeURIComponent('Request Demo - ToroTensor AI Operations Agent');
-      const body = encodeURIComponent(`Name: ${name}\nCompany: ${company}\nEmail: ${email}\nPhone: ${phone}\nTarget segment: ${segment}\n\nWorkflow to automate:\n${message}`);
+      const body = encodeURIComponent(`Name: ${name}\nCompany: ${company}\nEmail: ${email}\nPhone: ${phone}\nTarget segment: ${segment}\nPreferred meeting date: ${meetingDate}\nPreferred time: ${meetingTime}\n\nWorkflow to automate:\n${message}`);
       window.location.href = `mailto:info@torotensor.com?subject=${subject}&body=${body}`;
     });
   </script>
