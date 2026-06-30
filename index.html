@@ -1,38 +1,814 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ToroTensor BusinessAgent OS | Autonomous Business Operations Agents</title>
-<meta name="description" content="ToroTensor BusinessAgent OS converts business workflows into autonomous, controlled AI agents for sales, support, documents, follow-ups, tasks, reports, and operations." />
-<meta name="theme-color" content="#060B16" />
-<style>
-:root{--bg:#060B16;--panel:#0B1324;--panel2:#0F1A2F;--text:#EAF1FF;--muted:#9AA8C2;--line:rgba(255,255,255,.12);--blue:#1A6DFF;--cyan:#20D7FF;--orange:#FF7A1A;--green:#29D391;--shadow:0 30px 90px rgba(0,0,0,.38);--radius:28px;--font:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:var(--font);color:var(--text);background:radial-gradient(circle at 8% -10%,rgba(26,109,255,.34),transparent 32%),radial-gradient(circle at 88% 2%,rgba(255,122,26,.21),transparent 28%),radial-gradient(circle at 50% 20%,rgba(32,215,255,.08),transparent 34%),var(--bg);line-height:1.6;overflow-x:hidden}body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:64px 64px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.9),transparent 74%);z-index:-1}a{text-decoration:none;color:inherit}button,input,select,textarea{font:inherit}button{cursor:pointer}.container{width:min(1210px,92%);margin-inline:auto}.nav{position:sticky;top:0;z-index:100;backdrop-filter:blur(22px);background:rgba(6,11,22,.74);border-bottom:1px solid rgba(255,255,255,.08)}.nav-inner{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:22px}.brand{display:flex;align-items:center;gap:12px}.mark{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;background:conic-gradient(from 130deg,var(--blue),var(--cyan),var(--orange),var(--blue));color:white;font-weight:1000;letter-spacing:-.04em;box-shadow:0 0 36px rgba(26,109,255,.32)}.brand-text strong{display:block;font-weight:1000;letter-spacing:.06em}.brand-text strong span{color:var(--orange)}.brand-text small{display:block;color:var(--muted);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:900}.nav-links{display:flex;align-items:center;gap:22px;color:#B7C5DD;font-weight:850;font-size:.94rem}.nav-links a:hover{color:white}.nav-actions{display:flex;gap:10px;align-items:center}.btn{min-height:46px;border:0;border-radius:999px;padding:12px 18px;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:950;transition:.2s ease;white-space:nowrap}.btn:hover{transform:translateY(-1px)}.btn-primary{color:#06101F;background:linear-gradient(135deg,var(--cyan),#80EDFF);box-shadow:0 20px 42px rgba(32,215,255,.2)}.btn-orange{color:#170A00;background:linear-gradient(135deg,var(--orange),#FFD15D);box-shadow:0 20px 42px rgba(255,122,26,.18)}.btn-ghost{background:rgba(255,255,255,.07);border:1px solid var(--line);color:#EAF1FF}.hero{padding:78px 0 42px}.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:34px;align-items:center}.eyebrow{margin:0 0 16px;color:var(--cyan);text-transform:uppercase;letter-spacing:.18em;font-weight:1000;font-size:.78rem}h1,h2,h3{margin:0 0 16px;line-height:1.05}h1{font-size:clamp(3.2rem,7vw,7.2rem);letter-spacing:-.075em;font-weight:1000}h2{font-size:clamp(2.25rem,4.5vw,4.5rem);letter-spacing:-.064em;font-weight:1000}h3{font-size:1.25rem;letter-spacing:-.02em}p{color:var(--muted);margin:0 0 18px}.lead{font-size:clamp(1.05rem,1.6vw,1.28rem);max-width:760px;color:#B9C7DE}.highlight{color:white}.gradient-text{background:linear-gradient(90deg,#FFFFFF,#9DEFFF,#FFD18B);-webkit-background-clip:text;background-clip:text;color:transparent}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin:30px 0}.trust-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}.pill{display:inline-flex;align-items:center;gap:8px;padding:9px 12px;border-radius:999px;color:#B7C5DD;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);font-size:.86rem;font-weight:900}.hero-console{position:relative;background:linear-gradient(180deg,rgba(15,26,47,.96),rgba(8,15,29,.96));border:1px solid var(--line);border-radius:34px;box-shadow:var(--shadow);overflow:hidden}.hero-console:before{content:"";position:absolute;inset:-2px;background:radial-gradient(circle at 20% 0%,rgba(32,215,255,.22),transparent 35%),radial-gradient(circle at 92% 0%,rgba(255,122,26,.18),transparent 30%);opacity:.8;pointer-events:none}.console-top{position:relative;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);color:#B9C7DE;font-weight:950;font-size:.86rem;letter-spacing:.08em;text-transform:uppercase}.dots{display:flex;gap:8px}.dot{width:10px;height:10px;border-radius:50%;background:#2C3C58}.dot:nth-child(1){background:#FF6B6B}.dot:nth-child(2){background:#FFD166}.dot:nth-child(3){background:#29D391}.console-body{position:relative;padding:24px}.os-card{border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.05);padding:18px;margin-bottom:14px}.os-card-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:12px}.status{color:var(--green);font-weight:1000;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}.agent-map{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.node{min-height:82px;border-radius:18px;padding:13px;background:rgba(6,11,22,.55);border:1px solid rgba(255,255,255,.1)}.node b{display:block;color:white;font-size:.94rem}.node span{display:block;color:var(--muted);font-size:.78rem;margin-top:3px}.terminal{margin-top:16px;padding:17px;border-radius:20px;background:#030812;border:1px solid rgba(32,215,255,.16);color:#B8F7FF;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88rem;min-height:126px;white-space:pre-wrap}.section{padding:86px 0}.section-head{display:flex;justify-content:space-between;gap:28px;align-items:flex-end;margin-bottom:28px}.section-head p{max-width:620px}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}.card{background:linear-gradient(180deg,rgba(15,26,47,.92),rgba(9,18,36,.88));border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:0 18px 50px rgba(0,0,0,.18);position:relative;overflow:hidden}.card:after{content:"";position:absolute;right:-60px;top:-80px;width:150px;height:150px;border-radius:50%;background:rgba(32,215,255,.09);pointer-events:none}.icon{width:46px;height:46px;border-radius:16px;display:grid;place-items:center;margin-bottom:18px;background:rgba(32,215,255,.1);color:var(--cyan);border:1px solid rgba(32,215,255,.22);font-size:1.35rem}.card h3{color:white}.card p{position:relative;z-index:1}.agent-stack{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.agent-tile{padding:20px;border-radius:22px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.1);min-height:168px;transition:.2s ease}.agent-tile:hover{transform:translateY(-3px);border-color:rgba(32,215,255,.35);background:rgba(32,215,255,.06)}.agent-tile b{display:block;color:white;margin-bottom:8px}.agent-tile span{color:var(--muted);font-size:.93rem}.flow-simulator{background:linear-gradient(145deg,rgba(15,26,47,.96),rgba(7,14,27,.96));border:1px solid var(--line);border-radius:36px;padding:28px;box-shadow:var(--shadow)}.sim-top{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:20px}.select-wrap{display:flex;align-items:center;gap:10px;color:#B7C5DD;font-weight:900}select,input,textarea{background:#07101F;color:white;border:1px solid var(--line);border-radius:14px;padding:12px 14px;outline:none}input,textarea{width:100%}select:focus,input:focus,textarea:focus{border-color:rgba(32,215,255,.5);box-shadow:0 0 0 4px rgba(32,215,255,.08)}.sim-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:18px}.workflow-list{display:grid;gap:10px}.step{display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:18px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09)}.step-num{flex:0 0 31px;height:31px;border-radius:50%;display:grid;place-items:center;background:rgba(32,215,255,.12);color:var(--cyan);font-weight:1000}.sim-output{background:#030812;border:1px solid rgba(32,215,255,.15);border-radius:24px;padding:18px;min-height:360px}.output-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:14px}.chip{display:inline-flex;padding:6px 10px;border-radius:999px;background:rgba(41,211,145,.1);color:#91F5C9;border:1px solid rgba(41,211,145,.18);font-size:.76rem;font-weight:1000;text-transform:uppercase;letter-spacing:.1em}.output-body{white-space:pre-wrap;color:#B8F7FF;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88rem;line-height:1.55}.comparison{overflow:auto}table{width:100%;border-collapse:separate;border-spacing:0;min-width:760px}th,td{padding:16px;border-bottom:1px solid rgba(255,255,255,.08);text-align:left}th{color:white;background:rgba(255,255,255,.04)}td{color:#B7C5DD}td strong{color:white}.yes{color:#91F5C9;font-weight:1000}.pricing{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.price-card{background:linear-gradient(180deg,rgba(15,26,47,.94),rgba(9,18,36,.9));border:1px solid var(--line);border-radius:28px;padding:24px}.price-card.featured{border-color:rgba(32,215,255,.42);box-shadow:0 24px 70px rgba(32,215,255,.12)}.price{font-size:2.25rem;font-weight:1000;color:white;letter-spacing:-.05em;margin:10px 0}.price small{font-size:.85rem;color:var(--muted);letter-spacing:0}ul.clean{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:10px}ul.clean li{color:#B7C5DD;display:flex;gap:9px}ul.clean li:before{content:"✓";color:var(--green);font-weight:1000}.request{background:radial-gradient(circle at 10% 0%,rgba(32,215,255,.18),transparent 30%),radial-gradient(circle at 88% 0%,rgba(255,122,26,.14),transparent 28%),linear-gradient(145deg,rgba(15,26,47,.98),rgba(6,11,22,.98));border:1px solid var(--line);border-radius:40px;padding:34px;box-shadow:var(--shadow)}.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}label{display:grid;gap:7px;color:#DCE7FF;font-weight:900}label.full{grid-column:1/-1}.footer{padding:46px 0;border-top:1px solid rgba(255,255,255,.08);color:var(--muted)}.footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.footer a{color:#C5D3EA}.subtle-note{font-size:.92rem;color:#8898B2;margin-top:14px}.mini{font-size:.8rem;color:#8898B2}@media(max-width:1060px){.nav-links{display:none}.hero-grid,.grid-2,.sim-grid{grid-template-columns:1fr}.grid-3{grid-template-columns:1fr 1fr}.agent-stack{grid-template-columns:repeat(2,1fr)}.pricing{grid-template-columns:repeat(2,1fr)}}@media(max-width:680px){.nav-actions .btn-ghost{display:none}.brand-text small{display:none}.hero{padding-top:48px}.grid-3,.pricing,.form-grid{grid-template-columns:1fr}.agent-stack{grid-template-columns:1fr}.agent-map{grid-template-columns:1fr}.section-head{display:block}h1{font-size:3.25rem}.sim-top{display:block}.select-wrap{margin-top:12px;align-items:flex-start;flex-direction:column}select{width:100%}}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>BusinessAgent OS | Autonomous Agents for Business Workflows</title>
+  <meta name="description" content="BusinessAgent OS turns business workflows into controlled autonomous agents for sales, support, documents, tasks, payments, operations, and owner reporting." />
+  <meta name="theme-color" content="#050B18" />
+  <meta property="og:title" content="BusinessAgent OS" />
+  <meta property="og:description" content="Autonomous agents for real business workflows. Map your process, deploy task-specific agents, and track business outcomes." />
+  <meta property="og:type" content="website" />
+
+  <style>
+    :root{
+      --bg:#050B18;
+      --bg2:#081426;
+      --panel:#0C1629;
+      --panel2:#101E35;
+      --text:#EEF5FF;
+      --muted:#9AA9C2;
+      --soft:#C9D8EF;
+      --line:rgba(255,255,255,.115);
+      --line2:rgba(255,255,255,.075);
+      --blue:#1C73FF;
+      --cyan:#24D7FF;
+      --orange:#FF8A2A;
+      --green:#32D58F;
+      --red:#FF5876;
+      --shadow:0 34px 100px rgba(0,0,0,.40);
+      --radius:30px;
+      --font:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:var(--font);
+      color:var(--text);
+      background:
+        radial-gradient(circle at 7% -7%,rgba(28,115,255,.33),transparent 33%),
+        radial-gradient(circle at 91% 0%,rgba(255,138,42,.22),transparent 29%),
+        radial-gradient(circle at 48% 16%,rgba(36,215,255,.08),transparent 37%),
+        var(--bg);
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+    body:before{
+      content:"";
+      position:fixed;inset:0;pointer-events:none;z-index:-1;
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+      background-size:68px 68px;
+      mask-image:linear-gradient(to bottom,rgba(0,0,0,.92),transparent 78%);
+    }
+    a{text-decoration:none;color:inherit}
+    button,input,select,textarea{font:inherit}
+    .container{width:min(1220px,92%);margin-inline:auto}
+
+    .nav{
+      position:sticky;top:0;z-index:50;
+      background:rgba(5,11,24,.76);
+      border-bottom:1px solid rgba(255,255,255,.08);
+      backdrop-filter:blur(22px);
+    }
+    .nav-inner{
+      min-height:82px;
+      display:flex;align-items:center;justify-content:space-between;gap:22px;
+    }
+    .product-brand{display:flex;align-items:center;gap:12px}
+    .product-mark{
+      width:48px;height:48px;border-radius:16px;
+      display:grid;place-items:center;
+      background:conic-gradient(from 125deg,var(--blue),var(--cyan),var(--orange),var(--blue));
+      box-shadow:0 0 36px rgba(36,215,255,.22);
+      color:#fff;font-weight:1000;letter-spacing:-.04em;
+    }
+    .product-name strong{display:block;font-weight:1000;letter-spacing:.02em}
+    .product-name small{display:block;color:var(--muted);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:950}
+    .nav-links{display:flex;gap:22px;align-items:center;color:#B7C6DF;font-weight:850;font-size:.94rem}
+    .nav-links a:hover{color:white}
+    .nav-actions{display:flex;gap:10px;align-items:center}
+    .btn{
+      min-height:46px;border:0;border-radius:999px;padding:12px 18px;
+      display:inline-flex;align-items:center;justify-content:center;gap:9px;
+      font-weight:950;white-space:nowrap;transition:.2s ease;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{background:linear-gradient(135deg,var(--cyan),#8AEDFF);color:#03111C;box-shadow:0 20px 42px rgba(36,215,255,.18)}
+    .btn-orange{background:linear-gradient(135deg,var(--orange),#FFD36E);color:#160900;box-shadow:0 20px 42px rgba(255,138,42,.18)}
+    .btn-ghost{background:rgba(255,255,255,.065);border:1px solid var(--line);color:#EAF1FF}
+
+    .hero{padding:82px 0 46px}
+    .hero-grid{display:grid;grid-template-columns:1.03fr .97fr;gap:36px;align-items:center}
+    .eyebrow{
+      margin:0 0 16px;color:var(--cyan);text-transform:uppercase;
+      letter-spacing:.18em;font-weight:1000;font-size:.78rem;
+    }
+    h1,h2,h3{margin:0 0 16px;line-height:1.05}
+    h1{font-size:clamp(3.3rem,7vw,7.35rem);letter-spacing:-.078em;font-weight:1000}
+    h2{font-size:clamp(2.25rem,4.5vw,4.6rem);letter-spacing:-.065em;font-weight:1000}
+    h3{font-size:1.24rem;letter-spacing:-.02em}
+    p{color:var(--muted);margin:0 0 18px}
+    .lead{font-size:clamp(1.06rem,1.6vw,1.28rem);max-width:760px;color:#B9C8DF}
+    .gradient-text{
+      background:linear-gradient(90deg,#fff,#9EF0FF,#FFD394);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin:30px 0}
+    .trust-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;padding:9px 12px;border-radius:999px;
+      background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);
+      color:#B9C8DF;font-size:.86rem;font-weight:900;
+    }
+
+    .console{
+      position:relative;overflow:hidden;border-radius:36px;border:1px solid var(--line);
+      background:linear-gradient(180deg,rgba(16,30,53,.96),rgba(7,14,27,.96));
+      box-shadow:var(--shadow);
+    }
+    .console:before{
+      content:"";position:absolute;inset:-2px;pointer-events:none;
+      background:radial-gradient(circle at 19% 0%,rgba(36,215,255,.22),transparent 35%),
+                 radial-gradient(circle at 94% 0%,rgba(255,138,42,.16),transparent 31%);
+    }
+    .console-top{
+      position:relative;padding:18px 20px;border-bottom:1px solid var(--line2);
+      display:flex;align-items:center;justify-content:space-between;color:#B9C8DF;
+      font-weight:950;font-size:.84rem;letter-spacing:.08em;text-transform:uppercase;
+    }
+    .dots{display:flex;gap:8px}.dot{width:10px;height:10px;border-radius:50%;background:#2D3C55}.dot:nth-child(1){background:#FF6577}.dot:nth-child(2){background:#FFD56A}.dot:nth-child(3){background:#32D58F}
+    .console-body{position:relative;padding:24px}
+    .os-card{
+      border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.048);
+      padding:18px;margin-bottom:14px;
+    }
+    .os-card-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:12px}
+    .status{color:#8DF1C5;font-weight:1000;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase}
+    .agent-map{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .node{
+      min-height:84px;border-radius:18px;padding:13px;
+      background:rgba(5,11,24,.56);border:1px solid rgba(255,255,255,.10);
+    }
+    .node b{display:block;color:#fff;font-size:.93rem}
+    .node span{display:block;color:var(--muted);font-size:.78rem;margin-top:3px}
+    .terminal{
+      margin-top:16px;padding:17px;border-radius:20px;background:#030812;
+      border:1px solid rgba(36,215,255,.15);color:#B9F7FF;
+      font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+      font-size:.88rem;min-height:132px;white-space:pre-wrap;
+    }
+
+    .section{padding:88px 0}
+    .section-head{display:flex;justify-content:space-between;gap:30px;align-items:flex-end;margin-bottom:28px}
+    .section-head p{max-width:620px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+    .card{
+      position:relative;overflow:hidden;padding:26px;border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(16,30,53,.92),rgba(8,20,39,.9));
+      border:1px solid var(--line);box-shadow:0 18px 50px rgba(0,0,0,.18);
+    }
+    .card:after{
+      content:"";position:absolute;right:-70px;top:-86px;width:165px;height:165px;border-radius:50%;
+      background:rgba(36,215,255,.085);pointer-events:none;
+    }
+    .icon{
+      width:46px;height:46px;border-radius:16px;display:grid;place-items:center;margin-bottom:18px;
+      background:rgba(36,215,255,.10);color:var(--cyan);border:1px solid rgba(36,215,255,.22);
+      font-size:1.25rem;font-weight:1000;
+    }
+    .card h3{color:white}
+    .agent-stack{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .agent-tile{
+      padding:20px;border-radius:22px;background:rgba(255,255,255,.055);
+      border:1px solid rgba(255,255,255,.10);min-height:170px;transition:.2s ease;
+    }
+    .agent-tile:hover{transform:translateY(-3px);border-color:rgba(36,215,255,.36);background:rgba(36,215,255,.058)}
+    .agent-tile b{display:block;color:white;margin-bottom:8px}
+    .agent-tile span{color:var(--muted);font-size:.93rem}
+
+    .studio{
+      background:linear-gradient(145deg,rgba(16,30,53,.96),rgba(7,14,27,.96));
+      border:1px solid var(--line);border-radius:38px;padding:30px;box-shadow:var(--shadow);
+    }
+    .studio-top{display:flex;justify-content:space-between;gap:22px;align-items:flex-start;margin-bottom:20px}
+    .select-wrap{display:flex;align-items:center;gap:10px;color:#B9C8DF;font-weight:900}
+    select,input,textarea{
+      background:#07111F;color:white;border:1px solid var(--line);border-radius:14px;
+      padding:12px 14px;outline:none;
+    }
+    input,textarea{width:100%}
+    select:focus,input:focus,textarea:focus{border-color:rgba(36,215,255,.52);box-shadow:0 0 0 4px rgba(36,215,255,.08)}
+    .sim-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:18px}
+    .workflow-list{display:grid;gap:10px}
+    .step{
+      display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:18px;
+      background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);
+    }
+    .step-num{
+      flex:0 0 31px;height:31px;border-radius:50%;display:grid;place-items:center;
+      background:rgba(36,215,255,.12);color:var(--cyan);font-weight:1000;
+    }
+    .sim-output{
+      background:#030812;border:1px solid rgba(36,215,255,.15);border-radius:24px;
+      padding:18px;min-height:360px;
+    }
+    .output-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:14px}
+    .chip{
+      display:inline-flex;padding:6px 10px;border-radius:999px;background:rgba(50,213,143,.1);
+      color:#91F5C9;border:1px solid rgba(50,213,143,.18);font-size:.76rem;font-weight:1000;
+      text-transform:uppercase;letter-spacing:.1em;
+    }
+    .output-body{
+      white-space:pre-wrap;color:#B9F7FF;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+      font-size:.88rem;line-height:1.55;
+    }
+
+    .comparison{overflow:auto}
+    table{width:100%;border-collapse:separate;border-spacing:0;min-width:760px}
+    th,td{padding:16px;border-bottom:1px solid var(--line2);text-align:left}
+    th{color:white;background:rgba(255,255,255,.045)}
+    td{color:#B9C8DF}
+    td strong{color:white}
+    .yes{color:#91F5C9;font-weight:1000}
+
+    .pricing{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .price-card{
+      background:linear-gradient(180deg,rgba(16,30,53,.94),rgba(8,20,39,.9));
+      border:1px solid var(--line);border-radius:28px;padding:24px;
+    }
+    .price-card.featured{border-color:rgba(36,215,255,.42);box-shadow:0 24px 70px rgba(36,215,255,.11)}
+    .price{font-size:2.2rem;font-weight:1000;color:white;letter-spacing:-.05em;margin:10px 0}
+    .price small{font-size:.85rem;color:var(--muted);letter-spacing:0}
+    ul.clean{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:10px}
+    ul.clean li{color:#B9C8DF;display:flex;gap:9px}
+    ul.clean li:before{content:"✓";color:var(--green);font-weight:1000}
+
+    .request{
+      background:
+        radial-gradient(circle at 10% 0%,rgba(36,215,255,.17),transparent 30%),
+        radial-gradient(circle at 90% 0%,rgba(255,138,42,.14),transparent 29%),
+        linear-gradient(145deg,rgba(16,30,53,.98),rgba(5,11,24,.98));
+      border:1px solid var(--line);border-radius:40px;padding:34px;box-shadow:var(--shadow);
+    }
+    .form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    label{display:grid;gap:7px;color:#DCE7FF;font-weight:900}
+    label.full{grid-column:1/-1}
+    .subtle-note{font-size:.92rem;color:#8999B3;margin-top:10px}
+
+    .footer{padding:46px 0;border-top:1px solid rgba(255,255,255,.08);color:var(--muted)}
+    .footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    .footer a{color:#C7D6EC}
+    .mini{font-size:.82rem;color:#8999B3}
+
+    @media(max-width:1060px){
+      .nav-links{display:none}
+      .hero-grid,.grid-2,.sim-grid{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:1fr 1fr}
+      .agent-stack{grid-template-columns:repeat(2,1fr)}
+      .pricing{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:680px){
+      .nav-actions .btn-ghost{display:none}
+      .product-name small{display:none}
+      .hero{padding-top:48px}
+      h1{font-size:3.25rem}
+      .grid-3,.pricing,.form-grid{grid-template-columns:1fr}
+      .agent-stack{grid-template-columns:1fr}
+      .agent-map{grid-template-columns:1fr}
+      .section-head{display:block}
+      .studio-top{display:block}
+      .select-wrap{margin-top:12px;align-items:flex-start;flex-direction:column}
+      select{width:100%}
+    }
+  </style>
 </head>
+
 <body>
-<nav class="nav"><div class="container nav-inner"><a class="brand" href="#"><span class="mark">TT</span><span class="brand-text"><strong>TORO<span>TENSOR</span></strong><small>BusinessAgent OS</small></span></a><div class="nav-links"><a href="#platform">Platform</a><a href="#agents">Agents</a><a href="#workflow">How it works</a><a href="#difference">Why different</a><a href="#pricing">Pricing</a></div><div class="nav-actions"><a class="btn btn-ghost" href="#usecase">Use Case</a><a class="btn btn-primary" href="#request-demo">Request Guided Demo</a></div></div></nav>
-<main>
-<section class="hero"><div class="container hero-grid"><div><p class="eyebrow">Autonomous agents for real business workflows</p><h1><span class="gradient-text">BusinessAgent OS</span> for growing businesses.</h1><p class="lead">ToroTensor understands how your business works and deploys controlled AI agents for sales, support, quotations, documents, tasks, follow-ups, reports, and operations.</p><div class="hero-actions"><a class="btn btn-primary" href="#request-demo">Request Guided Demo</a><a class="btn btn-ghost" href="#simulator">Explore Workflow Simulator</a></div><div class="trust-row"><span class="pill">Workflow-first</span><span class="pill">Human-in-the-loop</span><span class="pill">Owner dashboard</span><span class="pill">Private deployment options</span></div></div><div class="hero-console" aria-label="BusinessAgent OS console"><div class="console-top"><span>BUSINESSAGENT_OS // LIVE MAP</span><span class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></span></div><div class="console-body"><div class="os-card"><div class="os-card-head"><strong>Workflow mapped</strong><span class="status">READY</span></div><div class="agent-map"><div class="node"><b>Sales Agent</b><span>Lead capture + qualification</span></div><div class="node"><b>Quote Agent</b><span>Draft pricing + approvals</span></div><div class="node"><b>Task Agent</b><span>Assign work + reminders</span></div><div class="node"><b>Docs Agent</b><span>Read PDFs + prepare outputs</span></div><div class="node"><b>Support Agent</b><span>Classify + respond</span></div><div class="node"><b>Report Agent</b><span>Owner summary + pipeline</span></div></div></div><div class="terminal">&gt; Connecting business channels...
-&gt; Reading sample workflow...
-&gt; Creating agent rules...
-&gt; Human approval enabled...
-&gt; Owner dashboard initialized...
-&gt; BusinessAgent OS ready for guided deployment.</div></div></div></div></section>
-<section class="section" id="platform"><div class="container"><div class="section-head"><div><p class="eyebrow">The business gap</p><h2>Manual work is manageable. Invisible leakage is not.</h2></div><p>Businesses do not fail because a person cannot reply to a message. They lose money because follow-ups, approvals, quotations, tasks, documents, and owner visibility are scattered across people and tools.</p></div><div class="grid-3"><article class="card"><div class="icon">⌁</div><h3>Work is scattered</h3><p>Business activity lives across WhatsApp, email, spreadsheets, calls, files, CRM, and staff memory.</p></article><article class="card"><div class="icon">◎</div><h3>Actions get lost</h3><p>Leads, quotes, payment reminders, customer promises, and support issues are often not tracked until closure.</p></article><article class="card"><div class="icon">▣</div><h3>Owners lack control</h3><p>The owner needs a clear daily view of what came in, who handled it, what is delayed, and what revenue is pending.</p></article></div></div></section>
-<section class="section" id="agents"><div class="container"><div class="section-head"><div><p class="eyebrow">Agent stack</p><h2>One business OS. Multiple task-specific agents.</h2></div><p>We do not position one magic agent for everything. ToroTensor maps the business workflow and deploys specialized agents that work together under business rules and human approvals.</p></div><div class="agent-stack"><div class="agent-tile"><b>Flow Mapper</b><span>Understands current business process, roles, approval points, and reporting needs.</span></div><div class="agent-tile"><b>Lead Agent</b><span>Captures, classifies, qualifies, and routes enquiries from multiple channels.</span></div><div class="agent-tile"><b>Quotation Agent</b><span>Drafts quotes, checks rules, and requests approval before sending.</span></div><div class="agent-tile"><b>Follow-up Agent</b><span>Schedules reminders and tracks every opportunity until closure.</span></div><div class="agent-tile"><b>Document Agent</b><span>Reads PDFs, forms, SOPs, invoices, contracts, brochures, and policy documents.</span></div><div class="agent-tile"><b>Task Agent</b><span>Assigns work, follows up with team members, and highlights delays.</span></div><div class="agent-tile"><b>Support Agent</b><span>Classifies customer issues, drafts replies, escalates critical cases.</span></div><div class="agent-tile"><b>Owner Report Agent</b><span>Generates daily business summary, pending items, risk alerts, and pipeline value.</span></div></div></div></section>
-<section class="section" id="workflow"><div class="container"><div class="section-head"><div><p class="eyebrow">Easy setup</p><h2>Connect business. Map workflow. Deploy agents.</h2></div><p>Installation and onboarding should feel simple. The client should not need to understand AI frameworks, prompts, APIs, or infrastructure.</p></div><div class="grid-3"><article class="card"><div class="icon">1</div><h3>Select business type</h3><p>Choose training, clinic, dealer, real estate, service business, or define a custom business process.</p></article><article class="card"><div class="icon">2</div><h3>Connect tools</h3><p>Start with forms, spreadsheets, sample messages, PDFs, and email. Later connect WhatsApp, Gmail, CRM, ERP, or databases.</p></article><article class="card"><div class="icon">3</div><h3>Describe workflow</h3><p>Tell what happens after an enquiry, who approves, what documents are used, and what owner report is needed.</p></article><article class="card"><div class="icon">4</div><h3>Generate agent plan</h3><p>The system creates a workflow map, task agents, business rules, approval gates, and sample automation outputs.</p></article><article class="card"><div class="icon">5</div><h3>Run simulation</h3><p>Use dummy or sample data to validate the workflow before touching live customer operations.</p></article><article class="card"><div class="icon">6</div><h3>Go live with control</h3><p>Deploy with human-in-the-loop approvals, audit logs, owner dashboard, and monthly workflow improvement.</p></article></div></div></section>
-<section class="section" id="simulator"><div class="container"><div class="flow-simulator"><div class="sim-top"><div><p class="eyebrow">Guided workflow simulator</p><h2>See how agents adapt to a business problem.</h2><p>This is a website-level simulation. The full operational demo is shown only after a guided demo request.</p></div><label class="select-wrap">Business problem<select id="scenarioSelect"><option value="sales">Sales and quotations</option><option value="support">Customer support</option><option value="documents">Document processing</option><option value="operations">Operations tracking</option><option value="payments">Payment reminders</option></select></label></div><div class="sim-grid"><div class="workflow-list" id="workflowSteps"></div><div class="sim-output"><div class="output-head"><strong>AGENT PLAN OUTPUT</strong><span class="chip">SIMULATED</span></div><div class="output-body" id="simOutput"></div></div></div></div></div></section>
-<section class="section" id="usecase"><div class="container"><div class="section-head"><div><p class="eyebrow">First use case from our previous work</p><h2>Customer Operations Agent can be one subtask inside BusinessAgent OS.</h2></div><p>Your earlier ToroTensor demo should not be discarded. It should be repositioned as one working module: customer messages to leads, tasks, follow-ups, quotations, and owner reports.</p></div><div class="grid-2"><article class="card"><div class="icon">↳</div><h3>Use it as proof of execution</h3><p>The previous message-to-business workflow can become the <span class="highlight">Customer Operations Agent</span>. It shows how the broader OS handles one real subtask.</p><ul class="clean"><li>Incoming message classification</li><li>Lead and pipeline creation</li><li>Follow-up and task assignment</li><li>Daily owner report</li></ul></article><article class="card"><div class="icon">⌬</div><h3>Keep it gated</h3><p>Do not make the complete demo openly accessible. Use the website to collect client details first, then show the relevant module in a meeting based on their workflow.</p><ul class="clean"><li>Better lead capture</li><li>More consultative sales conversation</li><li>Customized demo by business type</li><li>Higher chance of paid pilot conversion</li></ul></article></div></div></section>
-<section class="section" id="difference"><div class="container"><div class="section-head"><div><p class="eyebrow">Why different</p><h2>Not another generic agent framework.</h2></div><p>Open-source agents and general-purpose autonomous assistants are powerful, but most businesses need a controlled operating layer with setup, templates, approvals, dashboards, and measurable business outcomes.</p></div><div class="card comparison"><table><thead><tr><th>Capability</th><th>Generic / open-source agents</th><th>ToroTensor BusinessAgent OS</th></tr></thead><tbody><tr><td><strong>Primary user</strong></td><td>Developers, technical teams, individual power users</td><td><span class="yes">Business owners, operations teams, SMEs</span></td></tr><tr><td><strong>Setup</strong></td><td>Requires technical configuration, tools, prompts, and maintenance</td><td><span class="yes">Guided onboarding, templates, sample workflows, and deployment support</span></td></tr><tr><td><strong>Workflow understanding</strong></td><td>Task-level execution</td><td><span class="yes">Business-flow mapping with roles, approvals, and reporting</span></td></tr><tr><td><strong>Control</strong></td><td>Autonomy can be risky without business guardrails</td><td><span class="yes">Human approvals, business rules, logs, and escalation paths</span></td></tr><tr><td><strong>Business memory</strong></td><td>General context or tool memory</td><td><span class="yes">Customer, lead, quote, task, payment, document, and report memory</span></td></tr><tr><td><strong>Outcome</strong></td><td>Completes a task</td><td><span class="yes">Tracks workflow, accountability, pipeline, delays, and owner visibility</span></td></tr><tr><td><strong>Commercial model</strong></td><td>Framework / self-hosting / DIY</td><td><span class="yes">Pilot + setup + monthly managed workflow subscription</span></td></tr></tbody></table></div></div></section>
-<section class="section" id="deployment"><div class="container"><div class="section-head"><div><p class="eyebrow">Deployment options</p><h2>Start simple. Scale securely.</h2></div><p>The first version can run as a guided cloud workflow. For sensitive clients, the architecture can later support private cloud, client-controlled database, or local/on-prem deployment.</p></div><div class="grid-3"><article class="card"><div class="icon">☁</div><h3>Cloud pilot</h3><p>Fastest path for validation. Use sample data, forms, spreadsheets, and guided workflow dashboards.</p></article><article class="card"><div class="icon">▤</div><h3>Private business workspace</h3><p>Client-specific workspace with role access, business memory, approval rules, and owner reporting.</p></article><article class="card"><div class="icon">▦</div><h3>On-prem / local option</h3><p>For higher-trust clients later: client-controlled deployment, private data storage, local model options, and audit logs.</p></article></div></div></section>
-<section class="section" id="pricing"><div class="container"><div class="section-head"><div><p class="eyebrow">Business model</p><h2>Productized pilots, setup fees, and recurring revenue.</h2></div><p>The scalable model is not unlimited customization. We sell standard packages, configure workflows, then charge monthly for managed agents, support, improvements, and usage.</p></div><div class="pricing"><article class="price-card"><p class="eyebrow">Validation</p><h3>Guided Demo</h3><div class="price">Free</div><p>Client segment discussion and workflow walkthrough.</p><ul class="clean"><li>Discovery call</li><li>Use-case mapping</li><li>Relevant demo module</li></ul></article><article class="price-card featured"><p class="eyebrow">Pilot</p><h3>Workflow Pilot</h3><div class="price">₹25k–₹75k</div><p>One workflow with sample data and controlled agent output.</p><ul class="clean"><li>1 workflow</li><li>Dummy/sample data</li><li>Agent plan + dashboard</li></ul></article><article class="price-card"><p class="eyebrow">Setup</p><h3>Business Deployment</h3><div class="price">₹1L–₹3L</div><p>Configured agents, workflows, reports, forms, and rules.</p><ul class="clean"><li>3–5 workflows</li><li>Approval rules</li><li>Owner dashboard</li></ul></article><article class="price-card"><p class="eyebrow">Recurring</p><h3>Managed Agents</h3><div class="price">₹10k–₹75k<small>/mo</small></div><p>Monthly support, workflow updates, usage, and reporting.</p><ul class="clean"><li>Monitoring</li><li>Workflow changes</li><li>Support + reports</li></ul></article></div></div></section>
-<section class="section" id="request-demo"><div class="container"><div class="request"><div class="section-head"><div><p class="eyebrow">Request guided demo</p><h2>Tell us your workflow. We will map the agents.</h2></div><p>Demo access is guided. We first understand the business problem, then show the right agent module and discuss a pilot path.</p></div><form id="demoForm" class="form-grid"><label>Name<input id="name" name="name" type="text" placeholder="Your name" required></label><label>Company<input id="company" name="company" type="text" placeholder="Company name"></label><label>Email<input id="email" name="email" type="email" placeholder="you@company.com" required></label><label>Phone / WhatsApp<input id="phone" name="phone" type="tel" placeholder="+91..." required></label><label>Business type<select id="segment" name="segment"><option>Training Institute</option><option>Clinic / Diagnostic Center</option><option>Dealer / Distributor</option><option>Real Estate Consultant</option><option>Service Business</option><option>Manufacturing / Operations</option><option>Custom Business Workflow</option></select></label><label>Preferred meeting time<input id="meeting" name="meeting" type="text" placeholder="Example: Tomorrow 4 PM IST"></label><label class="full">Business workflow to automate<textarea id="message" name="message" rows="5" placeholder="Example: enquiries come on WhatsApp, team creates quotations manually, follow-ups are missed, owner needs daily report"></textarea></label><label class="full"><button class="btn btn-primary" type="submit">Send Guided Demo Request</button><span class="subtle-note">This form opens your email app and sends the request to info@torotensor.com. We can later connect it to a database/CRM.</span></label></form></div></div></section>
-</main>
-<footer class="footer"><div class="container footer-inner"><div><div class="brand"><span class="mark">TT</span><span class="brand-text"><strong>TORO<span>TENSOR</span></strong><small>BusinessAgent OS</small></span></div><p class="mini">© <span id="year"></span> ToroTensor Technologies Pvt Ltd. All rights reserved.</p></div><div><p class="mini">Autonomous agents for real business workflows.</p><p class="mini"><a href="mailto:info@torotensor.com">info@torotensor.com</a> · <a href="https://torotensor.com">torotensor.com</a></p></div></div></footer>
-<script>
-const scenarios={sales:{steps:[["Capture","Agent captures customer enquiry from message, email, form, or spreadsheet."],["Qualify","It extracts product, quantity, urgency, value, location, and missing details."],["Quote","Quotation Agent drafts pricing and asks for approval before sending."],["Follow-up","Follow-up Agent tracks next action until the deal is closed or lost."],["Report","Owner Report Agent shows pipeline value, delayed quotes, and pending actions."]],output:`BUSINESS PROBLEM: Sales and quotations\n\nAGENTS CREATED:\n- Lead Agent\n- Quotation Agent\n- Follow-up Agent\n- Owner Report Agent\n\nBUSINESS RULES:\n- Never send quotation without approval\n- High-value leads assigned to senior team\n- Follow-up every 24 hours until status changes\n- Owner receives daily pipeline report\n\nEXPECTED OUTCOME:\nNo enquiry gets buried. Every quote, follow-up, and pending opportunity becomes visible.`},support:{steps:[["Receive","Support request arrives from WhatsApp, email, website, or staff entry."],["Classify","Agent classifies issue type, urgency, customer, and required department."],["Respond","Support Agent drafts reply or asks for missing information."],["Escalate","Critical cases are escalated to the right team with context."],["Track","Owner dashboard shows open, delayed, resolved, and repeated issues."]],output:`BUSINESS PROBLEM: Customer support\n\nAGENTS CREATED:\n- Support Agent\n- Task Agent\n- Escalation Agent\n- Report Agent\n\nBUSINESS RULES:\n- Urgent issues escalate immediately\n- Draft replies require approval in early stage\n- Repeated complaints are flagged\n- Daily support summary goes to owner\n\nEXPECTED OUTCOME:\nSupport becomes trackable, consistent, and accountable without depending only on staff memory.`},documents:{steps:[["Upload","Client uploads PDFs, forms, invoices, brochures, SOPs, or policy documents."],["Extract","Document Agent extracts key facts, dates, values, obligations, and missing items."],["Generate","It prepares summaries, checklists, replies, reports, or draft documents."],["Verify","Human approval is required before external use."],["Store","Important facts are added to business memory for future workflows."]],output:`BUSINESS PROBLEM: Document-heavy workflow\n\nAGENTS CREATED:\n- Document Agent\n- Checklist Agent\n- Drafting Agent\n- Memory Agent\n\nBUSINESS RULES:\n- Source document references preserved\n- Human review required for final output\n- Missing information is flagged\n- Key data stored in business memory\n\nEXPECTED OUTCOME:\nDocuments stop being passive files and become actionable business inputs.`},operations:{steps:[["Map","Business process is mapped from enquiry to delivery or completion."],["Assign","Task Agent assigns responsibility and deadlines to team members."],["Monitor","Delays, dependencies, and pending approvals are tracked."],["Notify","Agent sends internal reminders and escalations."],["Report","Owner sees bottlenecks, team accountability, and daily progress."]],output:`BUSINESS PROBLEM: Operations tracking\n\nAGENTS CREATED:\n- Workflow Mapper\n- Task Agent\n- Delay Detection Agent\n- Owner Report Agent\n\nBUSINESS RULES:\n- Every task has owner and due date\n- Delays are escalated\n- Approvals are tracked\n- Daily status report sent to owner\n\nEXPECTED OUTCOME:\nThe business gains execution visibility without changing the entire existing system.`},payments:{steps:[["Detect","Agent identifies pending payments from notes, sheets, invoices, or status fields."],["Prioritize","It ranks pending amounts by due date, value, and risk."],["Draft","Payment Reminder Agent drafts polite reminders."],["Approve","Human approval is required before sending reminders."],["Track","Owner report shows overdue, collected, and at-risk revenue."]],output:`BUSINESS PROBLEM: Payment reminders\n\nAGENTS CREATED:\n- Payment Reminder Agent\n- Invoice Status Agent\n- Follow-up Agent\n- Owner Report Agent\n\nBUSINESS RULES:\n- No reminder sent without approval\n- Tone changes by customer type and delay\n- High-value overdue amounts are escalated\n- Collections report sent daily/weekly\n\nEXPECTED OUTCOME:\nPending revenue becomes visible and follow-up becomes disciplined.`}};
-function renderScenario(key){const s=scenarios[key];document.getElementById('workflowSteps').innerHTML=s.steps.map((step,idx)=>`<div class="step"><span class="step-num">${idx+1}</span><div><strong>${step[0]}</strong><p>${step[1]}</p></div></div>`).join('');document.getElementById('simOutput').textContent=s.output}document.getElementById('scenarioSelect').addEventListener('change',e=>renderScenario(e.target.value));renderScenario('sales');document.getElementById('demoForm').addEventListener('submit',function(e){e.preventDefault();const name=document.getElementById('name').value.trim();const company=document.getElementById('company').value.trim();const email=document.getElementById('email').value.trim();const phone=document.getElementById('phone').value.trim();const segment=document.getElementById('segment').value;const meeting=document.getElementById('meeting').value.trim();const message=document.getElementById('message').value.trim();const subject=encodeURIComponent('Guided Demo Request - ToroTensor BusinessAgent OS');const body=encodeURIComponent(`Name: ${name}\nCompany: ${company}\nEmail: ${email}\nPhone/WhatsApp: ${phone}\nBusiness type: ${segment}\nPreferred meeting time: ${meeting}\n\nBusiness workflow to automate:\n${message}`);window.location.href=`mailto:info@torotensor.com?subject=${subject}&body=${body}`});document.getElementById('year').textContent=new Date().getFullYear();
-</script>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="product-brand" href="#" aria-label="BusinessAgent OS home">
+        <span class="product-mark">BA</span>
+        <span class="product-name">
+          <strong>BusinessAgent OS</strong>
+          <small>Autonomous Business Agents</small>
+        </span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#platform">Platform</a>
+        <a href="#agents">Agents</a>
+        <a href="#setup">Setup</a>
+        <a href="#studio">Studio</a>
+        <a href="#difference">Why Different</a>
+        <a href="#pricing">Pricing</a>
+      </div>
+
+      <div class="nav-actions">
+        <a class="btn btn-ghost" href="#studio">View Simulator</a>
+        <a class="btn btn-primary" href="#request-demo">Request Guided Demo</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Autonomous agents for real business workflows</p>
+          <h1><span class="gradient-text">BusinessAgent OS</span> turns business processes into agents.</h1>
+          <p class="lead">
+            Map how your business works, deploy task-specific AI agents, keep humans in control, and track outcomes through one owner-ready operating layer.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#request-demo">Request Guided Demo</a>
+            <a class="btn btn-ghost" href="#platform">Explore Platform</a>
+          </div>
+
+          <div class="trust-row">
+            <span class="pill">Workflow-first</span>
+            <span class="pill">Human approvals</span>
+            <span class="pill">Business memory</span>
+            <span class="pill">Owner dashboard</span>
+          </div>
+        </div>
+
+        <div class="console" aria-label="BusinessAgent OS live console">
+          <div class="console-top">
+            <span>BUSINESSAGENT_OS // WORKFLOW MAP</span>
+            <span class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>
+          </div>
+          <div class="console-body">
+            <div class="os-card">
+              <div class="os-card-head">
+                <strong>Agent layer generated</strong>
+                <span class="status">READY</span>
+              </div>
+              <div class="agent-map">
+                <div class="node"><b>Flow Mapper</b><span>Process + rules</span></div>
+                <div class="node"><b>Sales Agent</b><span>Leads + quotes</span></div>
+                <div class="node"><b>Support Agent</b><span>Issues + replies</span></div>
+                <div class="node"><b>Docs Agent</b><span>PDFs + forms</span></div>
+                <div class="node"><b>Task Agent</b><span>Owners + deadlines</span></div>
+                <div class="node"><b>Report Agent</b><span>Daily owner view</span></div>
+              </div>
+            </div>
+            <div class="terminal">> Reading business flow...
+> Detecting repetitive tasks...
+> Creating specialized agents...
+> Approval gates enabled...
+> Business memory initialized...
+> Owner dashboard ready.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="platform">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">The platform</p>
+            <h2>Not a chatbot. Not a generic agent. A business operating layer.</h2>
+          </div>
+          <p>
+            BusinessAgent OS sits on top of existing tools and converts processes into controlled agents that understand tasks, rules, approvals, documents, follow-ups, and reporting.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="icon">⌁</div>
+            <h3>Business-flow mapping</h3>
+            <p>Understand how enquiries, tasks, approvals, documents, payments, and reports move through the business.</p>
+          </article>
+          <article class="card">
+            <div class="icon">◎</div>
+            <h3>Controlled autonomy</h3>
+            <p>Agents can draft, classify, assign, remind, and report, while important actions remain human-approved.</p>
+          </article>
+          <article class="card">
+            <div class="icon">▣</div>
+            <h3>Owner visibility</h3>
+            <p>See what came in, what is pending, who owns it, what is delayed, and what needs attention.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="agents">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Agent stack</p>
+            <h2>Specialized agents that work together.</h2>
+          </div>
+          <p>
+            One universal agent is not enough for real business operations. The platform deploys task-specific agents around the client’s workflow.
+          </p>
+        </div>
+
+        <div class="agent-stack">
+          <div class="agent-tile"><b>Flow Mapper</b><span>Turns the client’s current process into a workflow map with roles, rules, and outcomes.</span></div>
+          <div class="agent-tile"><b>Customer Operations Agent</b><span>Handles enquiries, lead capture, follow-ups, task routing, and owner summaries.</span></div>
+          <div class="agent-tile"><b>Quotation Agent</b><span>Drafts quotations, checks required details, and sends for approval before delivery.</span></div>
+          <div class="agent-tile"><b>Document Agent</b><span>Reads business PDFs, forms, SOPs, invoices, brochures, and policy documents.</span></div>
+          <div class="agent-tile"><b>Task Agent</b><span>Assigns work, tracks responsibility, highlights delays, and keeps teams accountable.</span></div>
+          <div class="agent-tile"><b>Support Agent</b><span>Classifies support requests, drafts replies, escalates urgent cases, and tracks resolution.</span></div>
+          <div class="agent-tile"><b>Payment Reminder Agent</b><span>Tracks pending amounts and prepares polite reminders with human approval.</span></div>
+          <div class="agent-tile"><b>Owner Report Agent</b><span>Generates daily summaries, risk alerts, pipeline view, and pending-action reports.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="setup">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Simple setup</p>
+            <h2>Describe the workflow. Deploy the agents.</h2>
+          </div>
+          <p>
+            Setup should be easy for a business owner. No need to understand prompts, APIs, infrastructure, or open-source agent frameworks.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card"><div class="icon">1</div><h3>Select business type</h3><p>Start with a standard segment or define a custom business workflow.</p></article>
+          <article class="card"><div class="icon">2</div><h3>Connect tools</h3><p>Begin with forms, spreadsheets, emails, PDFs, and sample messages. Add deeper integrations later.</p></article>
+          <article class="card"><div class="icon">3</div><h3>Map process</h3><p>Define what comes in, who handles it, what needs approval, and what report the owner wants.</p></article>
+          <article class="card"><div class="icon">4</div><h3>Generate agent plan</h3><p>The platform proposes agents, rules, tasks, approvals, and output formats.</p></article>
+          <article class="card"><div class="icon">5</div><h3>Run simulation</h3><p>Validate the workflow with dummy or sample data before going live.</p></article>
+          <article class="card"><div class="icon">6</div><h3>Go live safely</h3><p>Deploy with human approvals, audit logs, business memory, and owner dashboards.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="studio">
+      <div class="container">
+        <div class="studio">
+          <div class="studio-top">
+            <div>
+              <p class="eyebrow">Workflow Studio</p>
+              <h2>Preview how BusinessAgent OS adapts to a problem.</h2>
+              <p>This is a public simulator. Full operational demos are shown only after a guided demo request.</p>
+            </div>
+            <label class="select-wrap">
+              Business problem
+              <select id="scenarioSelect">
+                <option value="customer">Customer operations</option>
+                <option value="sales">Sales and quotations</option>
+                <option value="support">Customer support</option>
+                <option value="documents">Document processing</option>
+                <option value="payments">Payment reminders</option>
+                <option value="operations">Operations tracking</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="sim-grid">
+            <div class="workflow-list" id="workflowSteps"></div>
+            <div class="sim-output">
+              <div class="output-head">
+                <strong>AGENT PLAN OUTPUT</strong>
+                <span class="chip">SIMULATED</span>
+              </div>
+              <div class="output-body" id="simOutput"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="difference">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Why different</p>
+            <h2>Built for business deployment, not DIY experimentation.</h2>
+          </div>
+          <p>
+            General autonomous agents can perform tasks. BusinessAgent OS focuses on workflow mapping, approvals, business memory, dashboards, and recurring operational outcomes.
+          </p>
+        </div>
+
+        <div class="card comparison">
+          <table>
+            <thead>
+              <tr>
+                <th>Capability</th>
+                <th>Generic agent tools</th>
+                <th>BusinessAgent OS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Primary user</strong></td><td>Developers, power users, technical teams</td><td><span class="yes">Business owners and operations teams</span></td></tr>
+              <tr><td><strong>Setup</strong></td><td>Manual configuration, prompts, tools, and maintenance</td><td><span class="yes">Guided onboarding with workflow templates</span></td></tr>
+              <tr><td><strong>Workflow view</strong></td><td>Task execution</td><td><span class="yes">End-to-end process mapping with roles and rules</span></td></tr>
+              <tr><td><strong>Control</strong></td><td>Autonomy can be risky without guardrails</td><td><span class="yes">Human approvals, audit trail, escalation rules</span></td></tr>
+              <tr><td><strong>Memory</strong></td><td>General context</td><td><span class="yes">Customer, task, quote, payment, document, and report memory</span></td></tr>
+              <tr><td><strong>Outcome</strong></td><td>Task completed</td><td><span class="yes">Business pipeline, accountability, delays, and owner visibility</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pricing">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Business model</p>
+            <h2>Start with a guided pilot. Scale with managed agents.</h2>
+          </div>
+          <p>
+            Pricing is designed for validation first, then setup and monthly recurring value. Exact pricing depends on integrations, data volume, and workflow complexity.
+          </p>
+        </div>
+
+        <div class="pricing">
+          <article class="price-card">
+            <p class="eyebrow">Discovery</p>
+            <h3>Guided Demo</h3>
+            <div class="price">Free</div>
+            <p>Workflow discussion and relevant product walkthrough.</p>
+            <ul class="clean"><li>Discovery call</li><li>Use-case mapping</li><li>Relevant module demo</li></ul>
+          </article>
+          <article class="price-card featured">
+            <p class="eyebrow">Pilot</p>
+            <h3>Workflow Pilot</h3>
+            <div class="price">₹25k–₹75k</div>
+            <p>One controlled workflow with sample data and output validation.</p>
+            <ul class="clean"><li>1 workflow</li><li>Dummy/sample data</li><li>Agent plan + dashboard</li></ul>
+          </article>
+          <article class="price-card">
+            <p class="eyebrow">Setup</p>
+            <h3>Business Deployment</h3>
+            <div class="price">₹1L–₹3L</div>
+            <p>Configured workflows, agents, rules, reports, and approvals.</p>
+            <ul class="clean"><li>3–5 workflows</li><li>Approval rules</li><li>Owner dashboard</li></ul>
+          </article>
+          <article class="price-card">
+            <p class="eyebrow">Recurring</p>
+            <h3>Managed Agents</h3>
+            <div class="price">₹10k–₹75k<small>/mo</small></div>
+            <p>Monthly support, workflow updates, usage, and monitoring.</p>
+            <ul class="clean"><li>Workflow changes</li><li>Support</li><li>Monthly reports</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="request-demo">
+      <div class="container">
+        <div class="request">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Request guided demo</p>
+              <h2>Tell us your workflow. We will map the agents.</h2>
+            </div>
+            <p>
+              Demo access is guided. We first understand the business problem, then show the most relevant agent module and discuss a pilot path.
+            </p>
+          </div>
+
+          <form id="demoForm" class="form-grid">
+            <label>Name<input id="name" type="text" placeholder="Your name" required></label>
+            <label>Company<input id="company" type="text" placeholder="Company name"></label>
+            <label>Email<input id="email" type="email" placeholder="you@company.com" required></label>
+            <label>Phone / WhatsApp<input id="phone" type="tel" placeholder="+91..." required></label>
+            <label>Business type
+              <select id="segment">
+                <option>Training Institute</option>
+                <option>Clinic / Diagnostic Center</option>
+                <option>Dealer / Distributor</option>
+                <option>Real Estate Consultant</option>
+                <option>Service Business</option>
+                <option>Manufacturing / Operations</option>
+                <option>Custom Business Workflow</option>
+              </select>
+            </label>
+            <label>Preferred meeting time<input id="meeting" type="text" placeholder="Example: Tomorrow 4 PM IST"></label>
+            <label class="full">Business workflow to automate
+              <textarea id="message" rows="5" placeholder="Example: enquiries come on WhatsApp, team creates quotations manually, follow-ups are missed, owner needs daily report"></textarea>
+            </label>
+            <label class="full">
+              <button class="btn btn-primary" type="submit">Send Guided Demo Request</button>
+              <span class="subtle-note">This opens your email app and sends the request to the product team. We can connect it to a CRM/database later.</span>
+            </label>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="product-brand">
+        <span class="product-mark">BA</span>
+        <span class="product-name">
+          <strong>BusinessAgent OS</strong>
+          <small>Autonomous Business Agents</small>
+        </span>
+      </div>
+      <div>
+        <p class="mini">© <span id="year"></span> ToroTensor Technologies Pvt Ltd. BusinessAgent OS. All rights reserved.</p>
+        <p class="mini">Autonomous agents for real business workflows.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const scenarios = {
+      customer: {
+        steps: [
+          ["Receive", "Customer message, email, or form entry arrives from daily business channels."],
+          ["Classify", "Agent identifies intent, urgency, customer details, and missing information."],
+          ["Act", "It creates a lead/task, drafts reply, schedules follow-up, and updates pipeline."],
+          ["Approve", "Important replies or commitments wait for human approval."],
+          ["Report", "Owner sees daily summary, pending follow-ups, delayed tasks, and opportunity value."]
+        ],
+        output: `BUSINESS PROBLEM: Customer operations
+
+AGENTS DEPLOYED:
+- Customer Operations Agent
+- Follow-up Agent
+- Task Agent
+- Owner Report Agent
+
+RULES:
+- Capture every qualified customer input
+- Draft replies but keep approvals enabled
+- Track all follow-ups until closure
+- Report pending work to owner daily
+
+OUTCOME:
+Customer work becomes visible, trackable, and recoverable.`
+      },
+      sales: {
+        steps: [
+          ["Capture", "Sales request is captured from message, email, form, or spreadsheet."],
+          ["Qualify", "Agent extracts product, quantity, urgency, value, location, and missing details."],
+          ["Quote", "Quotation Agent drafts pricing and asks for approval before sending."],
+          ["Follow-up", "Follow-up Agent tracks next action until the deal is closed or lost."],
+          ["Report", "Owner Report Agent shows pipeline value, delayed quotes, and pending actions."]
+        ],
+        output: `BUSINESS PROBLEM: Sales and quotations
+
+AGENTS DEPLOYED:
+- Lead Agent
+- Quotation Agent
+- Follow-up Agent
+- Owner Report Agent
+
+RULES:
+- No quotation without approval
+- High-value leads assigned to senior team
+- Follow-up every 24 hours until status changes
+- Owner receives daily pipeline report
+
+OUTCOME:
+No enquiry gets buried. Every quote and opportunity becomes visible.`
+      },
+      support: {
+        steps: [
+          ["Receive", "Support request arrives from WhatsApp, email, website, or staff entry."],
+          ["Classify", "Agent identifies issue type, urgency, customer, and required department."],
+          ["Respond", "Support Agent drafts reply or asks for missing information."],
+          ["Escalate", "Critical cases are escalated to the right team with context."],
+          ["Track", "Owner dashboard shows open, delayed, resolved, and repeated issues."]
+        ],
+        output: `BUSINESS PROBLEM: Customer support
+
+AGENTS DEPLOYED:
+- Support Agent
+- Task Agent
+- Escalation Agent
+- Report Agent
+
+RULES:
+- Urgent issues escalate immediately
+- Early-stage replies require approval
+- Repeated complaints are flagged
+- Daily support summary goes to owner
+
+OUTCOME:
+Support becomes consistent, trackable, and accountable.`
+      },
+      documents: {
+        steps: [
+          ["Upload", "PDFs, forms, invoices, brochures, SOPs, or policy documents are added."],
+          ["Extract", "Document Agent extracts key facts, dates, values, obligations, and missing items."],
+          ["Generate", "It prepares summaries, checklists, replies, reports, or draft documents."],
+          ["Verify", "Human approval is required before external use."],
+          ["Store", "Important facts are added to business memory for future workflows."]
+        ],
+        output: `BUSINESS PROBLEM: Document-heavy workflow
+
+AGENTS DEPLOYED:
+- Document Agent
+- Checklist Agent
+- Drafting Agent
+- Memory Agent
+
+RULES:
+- Source document references preserved
+- Human review required for final output
+- Missing information is flagged
+- Key data stored in business memory
+
+OUTCOME:
+Documents become actionable business inputs.`
+      },
+      payments: {
+        steps: [
+          ["Detect", "Agent identifies pending payments from notes, sheets, invoices, or status fields."],
+          ["Prioritize", "It ranks pending amounts by due date, value, and risk."],
+          ["Draft", "Payment Reminder Agent drafts polite reminders."],
+          ["Approve", "Human approval is required before sending reminders."],
+          ["Track", "Owner report shows overdue, collected, and at-risk revenue."]
+        ],
+        output: `BUSINESS PROBLEM: Payment reminders
+
+AGENTS DEPLOYED:
+- Payment Reminder Agent
+- Invoice Status Agent
+- Follow-up Agent
+- Owner Report Agent
+
+RULES:
+- No reminder sent without approval
+- Tone changes by customer type and delay
+- High-value overdue amounts are escalated
+- Collections report sent daily/weekly
+
+OUTCOME:
+Pending revenue becomes visible and follow-up becomes disciplined.`
+      },
+      operations: {
+        steps: [
+          ["Map", "Business process is mapped from request to delivery or completion."],
+          ["Assign", "Task Agent assigns responsibility and deadlines to team members."],
+          ["Monitor", "Delays, dependencies, and pending approvals are tracked."],
+          ["Notify", "Agent sends internal reminders and escalations."],
+          ["Report", "Owner sees bottlenecks, team accountability, and daily progress."]
+        ],
+        output: `BUSINESS PROBLEM: Operations tracking
+
+AGENTS DEPLOYED:
+- Workflow Mapper
+- Task Agent
+- Delay Detection Agent
+- Owner Report Agent
+
+RULES:
+- Every task has owner and due date
+- Delays are escalated
+- Approvals are tracked
+- Daily status report sent to owner
+
+OUTCOME:
+Execution becomes visible without replacing existing tools.`
+      }
+    };
+
+    function renderScenario(key){
+      const s = scenarios[key];
+      document.getElementById('workflowSteps').innerHTML = s.steps.map((step, idx) => `
+        <div class="step">
+          <span class="step-num">${idx + 1}</span>
+          <div><strong>${step[0]}</strong><p>${step[1]}</p></div>
+        </div>
+      `).join('');
+      document.getElementById('simOutput').textContent = s.output;
+    }
+
+    document.getElementById('scenarioSelect').addEventListener('change', e => renderScenario(e.target.value));
+    renderScenario('customer');
+
+    document.getElementById('demoForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const company = document.getElementById('company').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const segment = document.getElementById('segment').value;
+      const meeting = document.getElementById('meeting').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      const subject = encodeURIComponent('Guided Demo Request - BusinessAgent OS');
+      const body = encodeURIComponent(
+`Name: ${name}
+Company: ${company}
+Email: ${email}
+Phone/WhatsApp: ${phone}
+Business type: ${segment}
+Preferred meeting time: ${meeting}
+
+Business workflow to automate:
+${message}`
+      );
+
+      window.location.href = `mailto:info@torotensor.com?subject=${subject}&body=${body}`;
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
