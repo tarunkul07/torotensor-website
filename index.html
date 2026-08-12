@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>BusinessAgent OS | Autonomous Agents for Real Business Workflows</title>
-  <meta name="description" content="BusinessAgent OS maps how a business works and deploys controlled AI agents for sales, support, documents, tasks, payments, operations, and owner reporting." />
-  <meta name="theme-color" content="#050B18" />
+  <title>BusinessAgent OS | Documents Become Business Actions</title>
+  <meta name="description" content="BusinessAgent OS extracts and validates information from PDFs, forms, emails, and business records, then connects it to controlled workflows, approvals, reports, Excel, and APIs." />
+  <meta name="theme-color" content="#F7F9FC" />
   <meta name="robots" content="index,follow" />
   <meta property="og:title" content="BusinessAgent OS" />
-  <meta property="og:description" content="Autonomous agents for real business workflows. Map your process, deploy task-specific agents, and track outcomes." />
+  <meta property="og:description" content="Turn document-heavy, repetitive work into validated data, controlled actions, and visible business outcomes." />
   <meta property="og:type" content="website" />
 
   <style>
@@ -365,6 +365,46 @@
       select{width:100%}
       .request{padding:24px}
     }
+
+    /* Polished light theme */
+    :root{
+      --bg:#F7F9FC;--bg2:#EEF3F9;--panel:#FFFFFF;--panel2:#F2F6FB;
+      --text:#10223C;--muted:#607089;--soft:#344963;
+      --line:rgba(16,34,60,.13);--line2:rgba(16,34,60,.08);
+      --blue:#155EEF;--cyan:#0E9FBB;--orange:#E86F22;--green:#158A5B;
+      --shadow:0 24px 70px rgba(30,55,88,.13);
+    }
+    body{background:radial-gradient(circle at 8% 0%,rgba(21,94,239,.10),transparent 30%),radial-gradient(circle at 92% 4%,rgba(232,111,34,.08),transparent 28%),var(--bg);color:var(--text)}
+    body:before{background-image:linear-gradient(rgba(21,94,239,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(21,94,239,.045) 1px,transparent 1px);mask-image:linear-gradient(to bottom,rgba(0,0,0,.65),transparent 76%)}
+    body:after{opacity:.35}
+    .nav{background:rgba(255,255,255,.86);border-color:var(--line2)}
+    .nav-links,.lead,.product-name small{color:var(--muted)}
+    .nav-links a:hover{color:var(--blue)}
+    .btn-primary{background:linear-gradient(135deg,#155EEF,#0E9FBB);color:#fff;box-shadow:0 16px 34px rgba(21,94,239,.18)}
+    .btn-ghost{background:#fff;border:1px solid var(--line);color:var(--text)}
+    .gradient-text{background:linear-gradient(90deg,#10223C,#155EEF,#0E9FBB);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .pill,.metric,.agent-tile,.faq{background:rgba(255,255,255,.78);border-color:var(--line);color:var(--soft)}
+    .metric b,.card h3,.agent-tile b,th,td strong{color:var(--text)}
+    .console,.studio,.request{background:linear-gradient(145deg,#FFFFFF,#F0F5FB);border-color:var(--line);box-shadow:var(--shadow)}
+    .console:before{background:radial-gradient(circle at 19% 0%,rgba(14,159,187,.12),transparent 35%),radial-gradient(circle at 94% 0%,rgba(232,111,34,.10),transparent 31%)}
+    .console-top,.select-wrap{color:var(--soft)}
+    .os-card,.step,.timeline-row{background:#F8FAFD;border-color:var(--line2)}
+    .node{background:#FFFFFF;border-color:var(--line)}
+    .node b{color:var(--text)}
+    .card,.price-card{background:linear-gradient(180deg,#FFFFFF,#F7F9FC);border-color:var(--line);box-shadow:0 16px 44px rgba(30,55,88,.08)}
+    .sim-output,.terminal{background:#071426;color:#B9F7FF}
+    select,input,textarea{background:#FFFFFF;color:var(--text);border-color:var(--line)}
+    th{background:#F0F5FB;color:var(--text)}
+    td{color:var(--muted)}
+    .footer{border-color:var(--line2)}
+    .proof-grid{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:16px;align-items:stretch}
+    .proof-card{padding:24px;border-radius:26px;background:#fff;border:1px solid var(--line);box-shadow:0 14px 40px rgba(30,55,88,.07)}
+    .proof-card small{display:block;color:var(--blue);font-weight:950;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+    .proof-card strong{display:block;font-size:1.18rem;margin-bottom:8px}
+    .proof-arrow{display:grid;place-items:center;color:var(--blue);font-size:1.7rem;font-weight:1000}
+    .contact-line{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:18px;color:var(--soft)}
+    .contact-line a{color:var(--blue);font-weight:950}
+    @media(max-width:860px){.proof-grid{grid-template-columns:1fr}.proof-arrow{transform:rotate(90deg);min-height:20px}}
   </style>
 </head>
 
@@ -375,22 +415,21 @@
         <span class="product-mark">BA</span>
         <span class="product-name">
           <strong>BusinessAgent OS</strong>
-          <small>Autonomous Business Agents</small>
+          <small>Document Intelligence + Workflow AI</small>
         </span>
       </a>
 
       <div class="nav-links">
+        <a href="#document-intelligence">Document Intelligence</a>
         <a href="#platform">Platform</a>
-        <a href="#agents">Agents</a>
-        <a href="#setup">Setup</a>
+        <a href="#solutions">Solutions</a>
         <a href="#studio">Studio</a>
-        <a href="#difference">Why Different</a>
-        <a href="#pricing">Pricing</a>
+        <a href="#deployment">Pilot</a>
       </div>
 
       <div class="nav-actions">
         <a class="btn btn-ghost" href="#studio">View Simulator</a>
-        <a class="btn btn-primary" href="#request-demo">Request Guided Demo</a>
+        <a class="btn btn-primary" href="#request-demo">Discuss Your Workflow</a>
       </div>
     </div>
   </nav>
@@ -399,43 +438,43 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <p class="eyebrow">Autonomous agents for real business workflows</p>
-          <h1><span class="gradient-text">BusinessAgent OS</span> turns processes into agents.</h1>
+          <p class="eyebrow">Document intelligence for controlled business workflows</p>
+          <h1><span class="gradient-text">Documents become</span> business actions.</h1>
           <p class="lead">
-            Map how your business works, deploy task-specific AI agents, keep humans in control, and track outcomes through one owner-ready operating layer.
+            Extract information from PDFs, forms, emails, and business records; validate it with AI and human review; then connect it to Excel, APIs, approvals, tasks, follow-ups, and reports.
           </p>
 
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#request-demo">Request Guided Demo</a>
-            <a class="btn btn-ghost" href="#studio">Open Workflow Studio</a>
+            <a class="btn btn-primary" href="#request-demo">Discuss Your Workflow</a>
+            <a class="btn btn-ghost" href="#document-intelligence">See How It Works</a>
           </div>
 
           <div class="trust-row">
-            <span class="pill">Workflow-first</span>
-            <span class="pill">Human approvals</span>
-            <span class="pill">Business memory</span>
-            <span class="pill">Owner dashboard</span>
+            <span class="pill">Private deployment available</span>
+            <span class="pill">Human-in-the-loop</span>
+            <span class="pill">PDF · Excel · Email · API</span>
+            <span class="pill">Pilot with sample data</span>
           </div>
         </div>
 
         <div class="console" aria-label="BusinessAgent OS live console">
           <div class="console-top">
-            <span>BUSINESSAGENT_OS // WORKFLOW MAP</span>
+            <span>BUSINESSAGENT_OS // DOCUMENT PIPELINE</span>
             <span class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>
           </div>
           <div class="console-body">
             <div class="os-card">
               <div class="os-card-head">
-                <strong>Agent layer generated</strong>
+                <strong>48-page financial statement</strong>
                 <span class="status">READY</span>
               </div>
               <div class="agent-map">
-                <div class="node"><b>Flow Mapper</b><span>Process + rules</span></div>
-                <div class="node"><b>Sales Agent</b><span>Leads + quotes</span></div>
-                <div class="node"><b>Support Agent</b><span>Issues + replies</span></div>
-                <div class="node"><b>Docs Agent</b><span>PDFs + forms</span></div>
-                <div class="node"><b>Task Agent</b><span>Owners + deadlines</span></div>
-                <div class="node"><b>Report Agent</b><span>Daily owner view</span></div>
+                <div class="node"><b>OCR</b><span>Pages + layout</span></div>
+                <div class="node"><b>Table Detection</b><span>Rows + columns</span></div>
+                <div class="node"><b>Field Extraction</b><span>Values + entities</span></div>
+                <div class="node"><b>Validation</b><span>Rules + confidence</span></div>
+                <div class="node"><b>Review Queue</b><span>Human exceptions</span></div>
+                <div class="node"><b>Export</b><span>Excel + JSON</span></div>
               </div>
             </div>
             <div class="terminal typing" id="heroTerminal"></div>
@@ -446,10 +485,26 @@
 
     <section class="metric-strip">
       <div class="container metric-grid">
-        <div class="metric"><b>01</b><span>Map business workflow</span></div>
-        <div class="metric"><b>08+</b><span>Task-specific agent modules</span></div>
-        <div class="metric"><b>100%</b><span>Human approval option</span></div>
-        <div class="metric"><b>Daily</b><span>Owner-ready reporting</span></div>
+        <div class="metric"><b>PDF</b><span>Documents and scanned records</span></div>
+        <div class="metric"><b>AI + Rules</b><span>Extraction and validation</span></div>
+        <div class="metric"><b>Review</b><span>Human control for exceptions</span></div>
+        <div class="metric"><b>Excel / API</b><span>Structured business output</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="document-intelligence">
+      <div class="container">
+        <div class="section-head">
+          <div><p class="eyebrow">Document Intelligence</p><h2>From passive files to verified, usable data.</h2></div>
+          <p>Start with one document-heavy workflow. We identify the fields and tables that matter, validate the output, and route uncertain cases for review.</p>
+        </div>
+        <div class="proof-grid">
+          <article class="proof-card"><small>Input</small><strong>Financial PDFs and records</strong><p>Statements, invoices, forms, tables, scans, and multi-country business documents.</p></article>
+          <div class="proof-arrow" aria-hidden="true">→</div>
+          <article class="proof-card"><small>AI processing</small><strong>Extract, structure, validate</strong><p>OCR, layout and table detection, field extraction, rule checks, and confidence scoring.</p></article>
+          <div class="proof-arrow" aria-hidden="true">→</div>
+          <article class="proof-card"><small>Business output</small><strong>Excel, JSON, review queue</strong><p>Verified data ready for reporting, approvals, tasks, follow-ups, systems, or APIs.</p></article>
+        </div>
       </div>
     </section>
 
@@ -457,55 +512,51 @@
       <div class="container">
         <div class="section-head">
           <div>
-            <p class="eyebrow">The platform</p>
-            <h2>Not a chatbot. Not a generic agent. A business operating layer.</h2>
+            <p class="eyebrow">The operating layer</p>
+            <h2>Validated information can trigger controlled work.</h2>
           </div>
           <p>
-            BusinessAgent OS sits on top of existing tools and converts processes into controlled agents that understand tasks, rules, approvals, documents, follow-ups, and reporting.
+            BusinessAgent OS connects extracted information to the next business step without requiring teams to replace every tool they already use.
           </p>
         </div>
 
         <div class="grid-3">
           <article class="card">
             <div class="icon">⌁</div>
-            <h3>Business-flow mapping</h3>
-            <p>Understand how enquiries, tasks, approvals, documents, payments, and reports move through the business.</p>
+            <h3>Structured extraction</h3>
+            <p>Turn documents and incoming records into consistent fields, tables, summaries, and traceable source references.</p>
           </article>
           <article class="card">
             <div class="icon">◎</div>
-            <h3>Controlled autonomy</h3>
-            <p>Agents can draft, classify, assign, remind, and report, while important actions remain human-approved.</p>
+            <h3>Validation and review</h3>
+            <p>Combine AI confidence, business rules, and human review so uncertain or high-impact outputs are checked.</p>
           </article>
           <article class="card">
             <div class="icon">▣</div>
-            <h3>Owner visibility</h3>
-            <p>See what came in, what is pending, who owns it, what is delayed, and what needs attention.</p>
+            <h3>Connected actions</h3>
+            <p>Send approved outputs to Excel, APIs, reports, task queues, follow-ups, or the systems your team already uses.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="agents">
+    <section class="section" id="solutions">
       <div class="container">
         <div class="section-head">
           <div>
-            <p class="eyebrow">Agent stack</p>
-            <h2>Specialized agents that work together.</h2>
+            <p class="eyebrow">Focused solutions</p>
+            <h2>Begin with a concrete workflow and measurable output.</h2>
           </div>
           <p>
-            One universal agent is not enough for real business operations. The platform deploys task-specific agents around the client’s workflow.
+            Best suited for document-heavy and workflow-driven teams that depend on PDFs, spreadsheets, email, WhatsApp, and manual follow-ups.
           </p>
         </div>
 
         <div class="agent-stack">
-          <div class="agent-tile"><b>Flow Mapper</b><span>Turns the client’s current process into a workflow map with roles, rules, and outcomes.</span></div>
-          <div class="agent-tile"><b>Customer Operations Agent</b><span>Handles enquiries, lead capture, follow-ups, task routing, and owner summaries.</span></div>
-          <div class="agent-tile"><b>Quotation Agent</b><span>Drafts quotations, checks required details, and sends for approval before delivery.</span></div>
-          <div class="agent-tile"><b>Document Agent</b><span>Reads business PDFs, forms, SOPs, invoices, brochures, and policy documents.</span></div>
-          <div class="agent-tile"><b>Task Agent</b><span>Assigns work, tracks responsibility, highlights delays, and keeps teams accountable.</span></div>
-          <div class="agent-tile"><b>Support Agent</b><span>Classifies support requests, drafts replies, escalates urgent cases, and tracks resolution.</span></div>
-          <div class="agent-tile"><b>Payment Reminder Agent</b><span>Tracks pending amounts and prepares polite reminders with human approval.</span></div>
-          <div class="agent-tile"><b>Owner Report Agent</b><span>Generates daily summaries, risk alerts, pipeline view, and pending-action reports.</span></div>
+          <div class="agent-tile"><b>Financial Document Processing</b><span>Extract tables and fields from statements, invoices, forms, and recurring financial records.</span></div>
+          <div class="agent-tile"><b>Document Review Workflows</b><span>Flag missing information, inconsistent values, low-confidence fields, and policy exceptions.</span></div>
+          <div class="agent-tile"><b>Enquiries and Quotations</b><span>Structure incoming requirements, identify missing details, draft replies, and track follow-ups.</span></div>
+          <div class="agent-tile"><b>Private Knowledge Assistants</b><span>Turn SOPs, manuals, policies, and internal documents into grounded question-answering systems.</span></div>
         </div>
       </div>
     </section>
@@ -539,8 +590,8 @@
           <div class="studio-top">
             <div>
               <p class="eyebrow">Workflow Studio</p>
-              <h2>Live simulator for business problems.</h2>
-              <p>This public simulator shows a continuously running execution console. Full operational demos are shown only after a guided demo request.</p>
+              <h2>See a workflow moving from input to outcome.</h2>
+              <p>This continuously running simulator illustrates the orchestration flow. A guided session uses representative or client-approved sample data.</p>
             </div>
             <label class="select-wrap">
               Business problem
@@ -639,51 +690,6 @@
       </div>
     </section>
 
-    <section class="section" id="pricing">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Business model</p>
-            <h2>Start with a guided pilot. Scale with managed agents.</h2>
-          </div>
-          <p>
-            Pricing is designed for validation first, then setup and monthly recurring value. Exact pricing depends on integrations, data volume, and workflow complexity.
-          </p>
-        </div>
-
-        <div class="pricing">
-          <article class="price-card">
-            <p class="eyebrow">Discovery</p>
-            <h3>Guided Demo</h3>
-            <div class="price">Free</div>
-            <p>Workflow discussion and relevant product walkthrough.</p>
-            <ul class="clean"><li>Discovery call</li><li>Use-case mapping</li><li>Relevant module demo</li></ul>
-          </article>
-          <article class="price-card featured">
-            <p class="eyebrow">Pilot</p>
-            <h3>Workflow Pilot</h3>
-            <div class="price">₹25k–₹75k</div>
-            <p>One controlled workflow with sample data and output validation.</p>
-            <ul class="clean"><li>1 workflow</li><li>Dummy/sample data</li><li>Agent plan + dashboard</li></ul>
-          </article>
-          <article class="price-card">
-            <p class="eyebrow">Setup</p>
-            <h3>Business Deployment</h3>
-            <div class="price">₹1L–₹3L</div>
-            <p>Configured workflows, agents, rules, reports, and approvals.</p>
-            <ul class="clean"><li>3–5 workflows</li><li>Approval rules</li><li>Owner dashboard</li></ul>
-          </article>
-          <article class="price-card">
-            <p class="eyebrow">Recurring</p>
-            <h3>Managed Agents</h3>
-            <div class="price">₹10k–₹75k<small>/mo</small></div>
-            <p>Monthly support, workflow updates, usage, and monitoring.</p>
-            <ul class="clean"><li>Workflow changes</li><li>Support</li><li>Monthly reports</li></ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
     <section class="section" id="faq">
       <div class="container">
         <div class="section-head">
@@ -691,13 +697,13 @@
             <p class="eyebrow">FAQ</p>
             <h2>Common questions before a guided demo.</h2>
           </div>
-          <p>BusinessAgent OS is positioned as a productized workflow layer, not a one-off custom software project.</p>
+          <p>We scope each engagement around the workflow, document types, output requirements, review needs, integrations, and deployment choice.</p>
         </div>
 
         <div class="faq-grid">
-          <article class="faq"><h3>Can it work for any business?</h3><p>It can work wherever the business has repeatable workflows, incoming requests, documents, tasks, approvals, follow-ups, or owner reporting needs.</p></article>
+          <article class="faq"><h3>Which teams are the best fit?</h3><p>Document-heavy and workflow-driven teams handling recurring PDFs, spreadsheets, emails, records, approvals, or manual follow-ups.</p></article>
           <article class="faq"><h3>Will it replace staff?</h3><p>No. The product is designed to support staff with capture, drafting, reminders, tracking, and reporting while keeping humans in control.</p></article>
-          <article class="faq"><h3>How is this different from general AI agents?</h3><p>The focus is business-flow mapping, approval rules, business memory, dashboards, and measurable operational outcomes.</p></article>
+          <article class="faq"><h3>How is this different from general AI agents?</h3><p>The starting point is a defined business input and a verifiable output, supported by validation rules, review checkpoints, and controlled downstream actions.</p></article>
           <article class="faq"><h3>Can we start without full integrations?</h3><p>Yes. A pilot can start with sample data, forms, spreadsheets, email exports, and documents. Deeper integrations can be added later.</p></article>
         </div>
       </div>
@@ -708,43 +714,41 @@
         <div class="request">
           <div class="section-head">
             <div>
-              <p class="eyebrow">Request guided demo</p>
-              <h2>Tell us your workflow. We will map the agents.</h2>
+              <p class="eyebrow">Tailored proposal</p>
+              <h2>Show us the repetitive work you want to improve.</h2>
             </div>
             <p>
-              Demo access is guided. We first understand the business problem, then show the most relevant agent module and discuss a pilot path.
+              Share the document type, current process, desired output, and review requirements. We will recommend a focused pilot and provide a scope-based proposal.
             </p>
           </div>
 
           <form id="demoForm" class="form-grid">
             <label>Name<input id="name" type="text" placeholder="Your name" required></label>
-            <label>Company<input id="company" type="text" placeholder="Company name"></label>
-            <label>Email<input id="email" type="email" placeholder="you@company.com" required></label>
-            <label>Phone / WhatsApp<input id="phone" type="tel" placeholder="+91..." required></label>
-            <label>Business type
+            <label>Organization<input id="company" type="text" placeholder="Organization name"></label>
+            <label>Work email<input id="email" type="email" placeholder="you@company.com" required></label>
+            <label>Phone / WhatsApp<input id="phone" type="tel" placeholder="+91..."></label>
+            <label>Primary workflow
               <select id="segment">
-                <option>Training Institute</option>
-                <option>Clinic / Diagnostic Center</option>
-                <option>Dealer / Distributor</option>
-                <option>Real Estate Consultant</option>
-                <option>Service Business</option>
-                <option>Manufacturing / Operations</option>
-                <option>Custom Business Workflow</option>
+                <option>Financial document processing</option>
+                <option>Forms and records extraction</option>
+                <option>Document review and validation</option>
+                <option>Enquiries and quotations</option>
+                <option>Private knowledge assistant</option>
+                <option>Another repetitive workflow</option>
               </select>
             </label>
-            <label>Preferred meeting time<input id="meeting" type="text" placeholder="Example: Tomorrow 4 PM IST"></label>
-            <label class="full">Business workflow to automate
-              <textarea id="message" rows="5" placeholder="Example: enquiries come on WhatsApp, team creates quotations manually, follow-ups are missed, owner needs daily report"></textarea>
+            <label class="full">Current process and desired output
+              <textarea id="message" rows="5" placeholder="Example: We receive financial PDFs from several countries and need validated fields and tables in a standard Excel format."></textarea>
             </label>
             <label class="full">
-              <button class="btn btn-primary" type="submit">Send Guided Demo Request</button>
-              <span class="subtle-note">This opens your email app and sends the request to the product team. We can connect it to a CRM/database later.</span>
+              <button class="btn btn-primary" type="submit">Request a Tailored Proposal</button>
+              <span class="subtle-note">This opens your email app with the details prepared for info@torotensor.com.</span>
             </label>
           </form>
 
           <div class="form-note">
             <span>▸</span>
-            <span>The complete working demo is not public. We collect business details first and then show the relevant workflow during a guided meeting.</span>
+            <span>Prefer email? Write directly to <a href="mailto:info@torotensor.com">info@torotensor.com</a>. Pricing is shared after the workflow and deployment requirements are understood.</span>
           </div>
         </div>
       </div>
@@ -757,25 +761,25 @@
         <span class="product-mark">BA</span>
         <span class="product-name">
           <strong>BusinessAgent OS</strong>
-          <small>Autonomous Business Agents</small>
+          <small>Document Intelligence + Workflow AI</small>
         </span>
       </div>
       <div>
         <p class="mini">© <span id="year"></span> ToroTensor Technologies Pvt Ltd. BusinessAgent OS. All rights reserved.</p>
-        <p class="mini">Autonomous agents for real business workflows.</p>
+        <p class="mini">Documents become business actions. · <a href="mailto:info@torotensor.com">info@torotensor.com</a></p>
       </div>
     </div>
   </footer>
 
   <script>
     const heroLines = [
-      "> reading business workflow...",
-      "> detecting repetitive decisions...",
-      "> generating agent roles: flow, sales, support, documents, tasks, reports",
-      "> enabling human approval gates...",
-      "> initializing business memory...",
-      "> owner dashboard ready.",
-      "> system status: guided deployment mode"
+      "> input received: 48-page financial statement",
+      "> running OCR and layout detection...",
+      "> detecting tables, fields, and source references...",
+      "> validating values against business rules...",
+      "> routing low-confidence fields to review queue...",
+      "> exporting structured JSON and Excel report...",
+      "> status: verified output ready"
     ];
 
     const scenarios = {
@@ -967,12 +971,12 @@ Execution becomes visible without replacing existing tools.`
     let activeScenarioKey = "customer";
 
     const heroLiveLines = [
-      "> heartbeat: workflow monitor active",
-      "> checking approval gates... active",
-      "> scanning task graph... no blockers",
-      "> syncing business memory... ready",
-      "> owner dashboard stream... online",
-      "> agent layer status... supervised autonomy"
+      "> watcher: new document queue active",
+      "> validation rules... active",
+      "> source references... preserved",
+      "> human review queue... synchronized",
+      "> Excel export service... ready",
+      "> pipeline status... supervised processing"
     ];
 
     const scenarioLiveLines = {
@@ -1106,7 +1110,6 @@ Execution becomes visible without replacing existing tools.`
       const email = document.getElementById("email").value.trim();
       const phone = document.getElementById("phone").value.trim();
       const segment = document.getElementById("segment").value;
-      const meeting = document.getElementById("meeting").value.trim();
       const message = document.getElementById("message").value.trim();
 
       const subject = encodeURIComponent("Guided Demo Request - BusinessAgent OS");
@@ -1115,8 +1118,7 @@ Execution becomes visible without replacing existing tools.`
 Company: ${company}
 Email: ${email}
 Phone/WhatsApp: ${phone}
-Business type: ${segment}
-Preferred meeting time: ${meeting}
+Primary workflow: ${segment}
 
 Business workflow to automate:
 ${message}`
