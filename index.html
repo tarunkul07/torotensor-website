@@ -1,1133 +1,180 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>BusinessAgent OS | Documents Become Business Actions</title>
-  <meta name="description" content="BusinessAgent OS extracts and validates information from PDFs, forms, emails, and business records, then connects it to controlled workflows, approvals, reports, Excel, and APIs." />
-  <meta name="theme-color" content="#F7F9FC" />
-  <meta name="robots" content="index,follow" />
-  <meta property="og:title" content="BusinessAgent OS" />
-  <meta property="og:description" content="Turn document-heavy, repetitive work into validated data, controlled actions, and visible business outcomes." />
-  <meta property="og:type" content="website" />
-
-  <style>
-    :root{
-      --bg:#050B18;
-      --bg2:#081426;
-      --panel:#0C1629;
-      --panel2:#101E35;
-      --text:#EEF5FF;
-      --muted:#9AA9C2;
-      --soft:#C9D8EF;
-      --line:rgba(255,255,255,.115);
-      --line2:rgba(255,255,255,.075);
-      --blue:#1C73FF;
-      --cyan:#24D7FF;
-      --orange:#FF8A2A;
-      --green:#32D58F;
-      --red:#FF5876;
-      --yellow:#FFD76B;
-      --shadow:0 34px 100px rgba(0,0,0,.42);
-      --radius:30px;
-      --font:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-    }
-
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:var(--font);
-      color:var(--text);
-      background:
-        radial-gradient(circle at 7% -7%,rgba(28,115,255,.34),transparent 32%),
-        radial-gradient(circle at 91% 0%,rgba(255,138,42,.22),transparent 29%),
-        radial-gradient(circle at 48% 16%,rgba(36,215,255,.08),transparent 38%),
-        var(--bg);
-      line-height:1.6;
-      overflow-x:hidden;
-    }
-    body:before{
-      content:"";
-      position:fixed;inset:0;pointer-events:none;z-index:-2;
-      background-image:
-        linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
-      background-size:68px 68px;
-      mask-image:linear-gradient(to bottom,rgba(0,0,0,.92),transparent 78%);
-    }
-    body:after{
-      content:"";
-      position:fixed;inset:0;pointer-events:none;z-index:-1;
-      background:
-        linear-gradient(115deg,transparent 0 42%,rgba(36,215,255,.035) 50%,transparent 58%),
-        linear-gradient(245deg,transparent 0 46%,rgba(255,138,42,.032) 52%,transparent 62%);
-      opacity:.9;
-    }
-
-    a{text-decoration:none;color:inherit}
-    button,input,select,textarea{font:inherit}
-    button{cursor:pointer}
-    .container{width:min(1220px,92%);margin-inline:auto}
-    .sr-only{position:absolute;left:-9999px}
-
-    .nav{
-      position:sticky;top:0;z-index:50;
-      background:rgba(5,11,24,.78);
-      border-bottom:1px solid rgba(255,255,255,.08);
-      backdrop-filter:blur(22px);
-    }
-    .nav-inner{
-      min-height:82px;
-      display:flex;align-items:center;justify-content:space-between;gap:22px;
-    }
-    .product-brand{display:flex;align-items:center;gap:12px}
-    .product-mark{
-      width:48px;height:48px;border-radius:16px;
-      display:grid;place-items:center;
-      background:conic-gradient(from 125deg,var(--blue),var(--cyan),var(--orange),var(--blue));
-      box-shadow:0 0 36px rgba(36,215,255,.22);
-      color:#fff;font-weight:1000;letter-spacing:-.04em;
-    }
-    .product-name strong{display:block;font-weight:1000;letter-spacing:.02em}
-    .product-name small{display:block;color:var(--muted);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:950}
-    .nav-links{display:flex;gap:22px;align-items:center;color:#B7C6DF;font-weight:850;font-size:.94rem}
-    .nav-links a{transition:.18s ease}
-    .nav-links a:hover{color:white}
-    .nav-actions{display:flex;gap:10px;align-items:center}
-    .btn{
-      min-height:46px;border:0;border-radius:999px;padding:12px 18px;
-      display:inline-flex;align-items:center;justify-content:center;gap:9px;
-      font-weight:950;white-space:nowrap;transition:.2s ease;
-    }
-    .btn:hover{transform:translateY(-1px)}
-    .btn-primary{background:linear-gradient(135deg,var(--cyan),#8AEDFF);color:#03111C;box-shadow:0 20px 42px rgba(36,215,255,.18)}
-    .btn-orange{background:linear-gradient(135deg,var(--orange),#FFD36E);color:#160900;box-shadow:0 20px 42px rgba(255,138,42,.18)}
-    .btn-ghost{background:rgba(255,255,255,.065);border:1px solid var(--line);color:#EAF1FF}
-
-    .hero{padding:82px 0 46px}
-    .hero-grid{display:grid;grid-template-columns:1.03fr .97fr;gap:36px;align-items:center}
-    .eyebrow{
-      margin:0 0 16px;color:var(--cyan);text-transform:uppercase;
-      letter-spacing:.18em;font-weight:1000;font-size:.78rem;
-    }
-    h1,h2,h3{margin:0 0 16px;line-height:1.05}
-    h1{font-size:clamp(3.3rem,7vw,7.35rem);letter-spacing:-.078em;font-weight:1000}
-    h2{font-size:clamp(2.25rem,4.5vw,4.6rem);letter-spacing:-.065em;font-weight:1000}
-    h3{font-size:1.24rem;letter-spacing:-.02em}
-    p{color:var(--muted);margin:0 0 18px}
-    .lead{font-size:clamp(1.06rem,1.6vw,1.28rem);max-width:760px;color:#B9C8DF}
-    .gradient-text{
-      background:linear-gradient(90deg,#fff,#9EF0FF,#FFD394);
-      -webkit-background-clip:text;background-clip:text;color:transparent;
-    }
-    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin:30px 0}
-    .trust-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
-    .pill{
-      display:inline-flex;align-items:center;gap:8px;padding:9px 12px;border-radius:999px;
-      background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);
-      color:#B9C8DF;font-size:.86rem;font-weight:900;
-    }
-
-    .console{
-      position:relative;overflow:hidden;border-radius:36px;border:1px solid var(--line);
-      background:linear-gradient(180deg,rgba(16,30,53,.96),rgba(7,14,27,.96));
-      box-shadow:var(--shadow);
-    }
-    .console:before{
-      content:"";position:absolute;inset:-2px;pointer-events:none;
-      background:radial-gradient(circle at 19% 0%,rgba(36,215,255,.22),transparent 35%),
-                 radial-gradient(circle at 94% 0%,rgba(255,138,42,.16),transparent 31%);
-    }
-    .console-top{
-      position:relative;padding:18px 20px;border-bottom:1px solid var(--line2);
-      display:flex;align-items:center;justify-content:space-between;color:#B9C8DF;
-      font-weight:950;font-size:.84rem;letter-spacing:.08em;text-transform:uppercase;
-    }
-    .dots{display:flex;gap:8px}.dot{width:10px;height:10px;border-radius:50%;background:#2D3C55}.dot:nth-child(1){background:#FF6577}.dot:nth-child(2){background:#FFD56A}.dot:nth-child(3){background:#32D58F}
-    .console-body{position:relative;padding:24px}
-    .os-card{
-      border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.048);
-      padding:18px;margin-bottom:14px;
-    }
-    .os-card-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:12px}
-    .status{color:#8DF1C5;font-weight:1000;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase}
-    .agent-map{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-    .node{
-      min-height:84px;border-radius:18px;padding:13px;
-      background:rgba(5,11,24,.56);border:1px solid rgba(255,255,255,.10);
-      position:relative;overflow:hidden;
-    }
-    .node:before{
-      content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent,rgba(36,215,255,.05),transparent);
-      transform:translateX(-100%);animation:nodeSweep 5.5s ease-in-out infinite;
-    }
-    .node:nth-child(2):before{animation-delay:.4s}.node:nth-child(3):before{animation-delay:.8s}.node:nth-child(4):before{animation-delay:1.2s}.node:nth-child(5):before{animation-delay:1.6s}.node:nth-child(6):before{animation-delay:2s}
-    @keyframes nodeSweep{0%,70%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
-    .node b{display:block;color:#fff;font-size:.93rem;position:relative}
-    .node span{display:block;color:var(--muted);font-size:.78rem;margin-top:3px;position:relative}
-    .terminal{
-      margin-top:16px;padding:17px;border-radius:20px;background:#030812;
-      border:1px solid rgba(36,215,255,.15);color:#B9F7FF;
-      font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-      font-size:.88rem;min-height:154px;white-space:pre-wrap;
-    }
-    .terminal.typing:after,.output-terminal.typing:after{
-      content:"";
-      display:inline-block;width:10px;height:1.08em;vertical-align:-.15em;margin-left:4px;
-      background:#9EF0FF;box-shadow:0 0 12px rgba(158,240,255,.45);
-      animation:blinkCursor 1s steps(1,end) infinite;
-    }
-    @keyframes blinkCursor{0%,49%{opacity:1}50%,100%{opacity:0}}
-
-    .metric-strip{padding:18px 0 10px}
-    .metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-    .metric{
-      border:1px solid var(--line);background:rgba(255,255,255,.052);border-radius:22px;padding:18px;
-    }
-    .metric b{display:block;color:white;font-size:1.7rem;letter-spacing:-.05em}
-    .metric span{display:block;color:var(--muted);font-size:.9rem;font-weight:850}
-
-    .section{padding:88px 0}
-    .section-head{display:flex;justify-content:space-between;gap:30px;align-items:flex-end;margin-bottom:28px}
-    .section-head p{max-width:620px}
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-    .card{
-      position:relative;overflow:hidden;padding:26px;border-radius:var(--radius);
-      background:linear-gradient(180deg,rgba(16,30,53,.92),rgba(8,20,39,.9));
-      border:1px solid var(--line);box-shadow:0 18px 50px rgba(0,0,0,.18);
-    }
-    .card:after{
-      content:"";position:absolute;right:-70px;top:-86px;width:165px;height:165px;border-radius:50%;
-      background:rgba(36,215,255,.085);pointer-events:none;
-    }
-    .icon{
-      width:46px;height:46px;border-radius:16px;display:grid;place-items:center;margin-bottom:18px;
-      background:rgba(36,215,255,.10);color:var(--cyan);border:1px solid rgba(36,215,255,.22);
-      font-size:1.25rem;font-weight:1000;
-    }
-    .card h3{color:white;position:relative}
-    .card p,.card ul{position:relative}
-    .agent-stack{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-    .agent-tile{
-      padding:20px;border-radius:22px;background:rgba(255,255,255,.055);
-      border:1px solid rgba(255,255,255,.10);min-height:176px;transition:.2s ease;
-    }
-    .agent-tile:hover{transform:translateY(-3px);border-color:rgba(36,215,255,.36);background:rgba(36,215,255,.058)}
-    .agent-tile b{display:block;color:white;margin-bottom:8px}
-    .agent-tile span{color:var(--muted);font-size:.93rem}
-
-    .studio{
-      background:linear-gradient(145deg,rgba(16,30,53,.96),rgba(7,14,27,.96));
-      border:1px solid var(--line);border-radius:38px;padding:30px;box-shadow:var(--shadow);
-    }
-    .studio-top{display:flex;justify-content:space-between;gap:22px;align-items:flex-start;margin-bottom:20px}
-    .select-wrap{display:flex;align-items:center;gap:10px;color:#B9C8DF;font-weight:900}
-    select,input,textarea{
-      background:#07111F;color:white;border:1px solid var(--line);border-radius:14px;
-      padding:12px 14px;outline:none;
-    }
-    input,textarea{width:100%}
-    select:focus,input:focus,textarea:focus{border-color:rgba(36,215,255,.52);box-shadow:0 0 0 4px rgba(36,215,255,.08)}
-    .sim-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:18px}
-    .workflow-list{display:grid;gap:10px}
-    .step{
-      display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:18px;
-      background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);
-      transition:.18s ease;
-    }
-    .step:hover{border-color:rgba(36,215,255,.28);background:rgba(36,215,255,.055)}
-    .step-num{
-      flex:0 0 31px;height:31px;border-radius:50%;display:grid;place-items:center;
-      background:rgba(36,215,255,.12);color:var(--cyan);font-weight:1000;
-    }
-    .sim-output{
-      background:#030812;border:1px solid rgba(36,215,255,.15);border-radius:24px;
-      padding:18px;min-height:390px;
-      box-shadow:inset 0 0 70px rgba(36,215,255,.035);
-    }
-    .output-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:14px}
-    .chip{
-      display:inline-flex;padding:6px 10px;border-radius:999px;background:rgba(50,213,143,.1);
-      color:#91F5C9;border:1px solid rgba(50,213,143,.18);font-size:.76rem;font-weight:1000;
-      text-transform:uppercase;letter-spacing:.1em;
-    }
-    .output-body{
-      white-space:pre-wrap;color:#B9F7FF;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-      font-size:.88rem;line-height:1.55;
-    }
-    .output-terminal{min-height:320px}
-
-    .comparison{overflow:auto}
-    table{width:100%;border-collapse:separate;border-spacing:0;min-width:760px}
-    th,td{padding:16px;border-bottom:1px solid var(--line2);text-align:left}
-    th{color:white;background:rgba(255,255,255,.045)}
-    td{color:#B9C8DF}
-    td strong{color:white}
-    .yes{color:#91F5C9;font-weight:1000}
-    .warn{color:#FFD76B;font-weight:1000}
-
-    .deployment{
-      display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:stretch;
-    }
-    .timeline{display:grid;gap:12px}
-    .timeline-row{
-      display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:flex-start;
-      padding:14px;border-radius:20px;background:rgba(255,255,255,.05);border:1px solid var(--line2);
-    }
-    .timeline-row b:first-child{
-      width:36px;height:36px;border-radius:50%;display:grid;place-items:center;
-      background:rgba(255,138,42,.12);color:#FFD394;border:1px solid rgba(255,138,42,.24);
-    }
-
-    .pricing{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-    .price-card{
-      background:linear-gradient(180deg,rgba(16,30,53,.94),rgba(8,20,39,.9));
-      border:1px solid var(--line);border-radius:28px;padding:24px;
-    }
-    .price-card.featured{border-color:rgba(36,215,255,.42);box-shadow:0 24px 70px rgba(36,215,255,.11)}
-    .price{font-size:2.2rem;font-weight:1000;color:white;letter-spacing:-.05em;margin:10px 0}
-    .price small{font-size:.85rem;color:var(--muted);letter-spacing:0}
-    ul.clean{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:10px}
-    ul.clean li{color:#B9C8DF;display:flex;gap:9px}
-    ul.clean li:before{content:"✓";color:var(--green);font-weight:1000}
-
-    .faq-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-    .faq{padding:22px;border-radius:24px;background:rgba(255,255,255,.052);border:1px solid var(--line2)}
-    .faq h3{font-size:1.06rem}
-
-    .request{
-      background:
-        radial-gradient(circle at 10% 0%,rgba(36,215,255,.17),transparent 30%),
-        radial-gradient(circle at 90% 0%,rgba(255,138,42,.14),transparent 29%),
-        linear-gradient(145deg,rgba(16,30,53,.98),rgba(5,11,24,.98));
-      border:1px solid var(--line);border-radius:40px;padding:34px;box-shadow:var(--shadow);
-    }
-    .form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-    label{display:grid;gap:7px;color:#DCE7FF;font-weight:900}
-    label.full{grid-column:1/-1}
-    .subtle-note{font-size:.92rem;color:#8999B3;margin-top:10px}
-    .form-note{
-      margin-top:16px;
-      display:flex;gap:10px;align-items:flex-start;
-      padding:14px 16px;border-radius:18px;
-      background:rgba(255,138,42,.08);border:1px solid rgba(255,138,42,.16);
-      color:#FFD394;font-weight:800;
-    }
-
-    .footer{padding:46px 0;border-top:1px solid rgba(255,255,255,.08);color:var(--muted)}
-    .footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-    .footer a{color:#C7D6EC}
-    .mini{font-size:.82rem;color:#8999B3}
-
-
-    .terminal,
-    .output-terminal{
-      overflow:auto;
-      scrollbar-width:thin;
-      scrollbar-color:rgba(36,215,255,.45) rgba(255,255,255,.05);
-    }
-    .terminal{max-height:250px}
-    .output-terminal{max-height:470px}
-    .terminal::-webkit-scrollbar,
-    .output-terminal::-webkit-scrollbar{width:8px}
-    .terminal::-webkit-scrollbar-thumb,
-    .output-terminal::-webkit-scrollbar-thumb{background:rgba(36,215,255,.35);border-radius:999px}
-    .terminal.live:after,
-    .output-terminal.live:after{
-      content:"";
-      display:inline-block;width:10px;height:1.08em;vertical-align:-.15em;margin-left:4px;
-      background:#9EF0FF;box-shadow:0 0 12px rgba(158,240,255,.45);
-      animation:blinkCursor 1s steps(1,end) infinite;
-    }
-
-    @media(max-width:1060px){
-      .nav-links{display:none}
-      .hero-grid,.grid-2,.sim-grid,.deployment{grid-template-columns:1fr}
-      .grid-3{grid-template-columns:1fr 1fr}
-      .agent-stack{grid-template-columns:repeat(2,1fr)}
-      .pricing{grid-template-columns:repeat(2,1fr)}
-      .metric-grid{grid-template-columns:repeat(2,1fr)}
-    }
-    @media(max-width:680px){
-      .nav-actions .btn-ghost{display:none}
-      .product-name small{display:none}
-      .hero{padding-top:48px}
-      h1{font-size:3.15rem}
-      .grid-3,.pricing,.form-grid,.faq-grid,.metric-grid{grid-template-columns:1fr}
-      .agent-stack{grid-template-columns:1fr}
-      .agent-map{grid-template-columns:1fr}
-      .section-head{display:block}
-      .studio-top{display:block}
-      .select-wrap{margin-top:12px;align-items:flex-start;flex-direction:column}
-      select{width:100%}
-      .request{padding:24px}
-    }
-
-    /* Polished light theme */
-    :root{
-      --bg:#F7F9FC;--bg2:#EEF3F9;--panel:#FFFFFF;--panel2:#F2F6FB;
-      --text:#10223C;--muted:#607089;--soft:#344963;
-      --line:rgba(16,34,60,.13);--line2:rgba(16,34,60,.08);
-      --blue:#155EEF;--cyan:#0E9FBB;--orange:#E86F22;--green:#158A5B;
-      --shadow:0 24px 70px rgba(30,55,88,.13);
-    }
-    body{background:radial-gradient(circle at 8% 0%,rgba(21,94,239,.10),transparent 30%),radial-gradient(circle at 92% 4%,rgba(232,111,34,.08),transparent 28%),var(--bg);color:var(--text)}
-    body:before{background-image:linear-gradient(rgba(21,94,239,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(21,94,239,.045) 1px,transparent 1px);mask-image:linear-gradient(to bottom,rgba(0,0,0,.65),transparent 76%)}
-    body:after{opacity:.35}
-    .nav{background:rgba(255,255,255,.86);border-color:var(--line2)}
-    .nav-links,.lead,.product-name small{color:var(--muted)}
-    .nav-links a:hover{color:var(--blue)}
-    .btn-primary{background:linear-gradient(135deg,#155EEF,#0E9FBB);color:#fff;box-shadow:0 16px 34px rgba(21,94,239,.18)}
-    .btn-ghost{background:#fff;border:1px solid var(--line);color:var(--text)}
-    .gradient-text{background:linear-gradient(90deg,#10223C,#155EEF,#0E9FBB);-webkit-background-clip:text;background-clip:text;color:transparent}
-    .pill,.metric,.agent-tile,.faq{background:rgba(255,255,255,.78);border-color:var(--line);color:var(--soft)}
-    .metric b,.card h3,.agent-tile b,th,td strong{color:var(--text)}
-    .console,.studio,.request{background:linear-gradient(145deg,#FFFFFF,#F0F5FB);border-color:var(--line);box-shadow:var(--shadow)}
-    .console:before{background:radial-gradient(circle at 19% 0%,rgba(14,159,187,.12),transparent 35%),radial-gradient(circle at 94% 0%,rgba(232,111,34,.10),transparent 31%)}
-    .console-top,.select-wrap{color:var(--soft)}
-    .os-card,.step,.timeline-row{background:#F8FAFD;border-color:var(--line2)}
-    .node{background:#FFFFFF;border-color:var(--line)}
-    .node b{color:var(--text)}
-    .card,.price-card{background:linear-gradient(180deg,#FFFFFF,#F7F9FC);border-color:var(--line);box-shadow:0 16px 44px rgba(30,55,88,.08)}
-    .sim-output,.terminal{background:#071426;color:#B9F7FF}
-    select,input,textarea{background:#FFFFFF;color:var(--text);border-color:var(--line)}
-    th{background:#F0F5FB;color:var(--text)}
-    td{color:var(--muted)}
-    .footer{border-color:var(--line2)}
-    .proof-grid{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:16px;align-items:stretch}
-    .proof-card{padding:24px;border-radius:26px;background:#fff;border:1px solid var(--line);box-shadow:0 14px 40px rgba(30,55,88,.07)}
-    .proof-card small{display:block;color:var(--blue);font-weight:950;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
-    .proof-card strong{display:block;font-size:1.18rem;margin-bottom:8px}
-    .proof-arrow{display:grid;place-items:center;color:var(--blue);font-size:1.7rem;font-weight:1000}
-    .contact-line{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:18px;color:var(--soft)}
-    .contact-line a{color:var(--blue);font-weight:950}
-    @media(max-width:860px){.proof-grid{grid-template-columns:1fr}.proof-arrow{transform:rotate(90deg);min-height:20px}}
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ToroTensor | Corporate AI Enablement & Automation</title>
+  <meta name="description" content="ToroTensor helps organizations build practical AI capability in their teams and turn high-value workflows into controlled AI systems.">
+  <link rel="canonical" href="https://torotensor.com/">
+  <meta name="theme-color" content="#f7f9fc">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="ToroTensor | From AI skills to working AI systems">
+  <meta property="og:description" content="Company-specific AI enablement, workflow discovery, and practical automation for business and technical teams.">
+  <meta property="og:url" content="https://torotensor.com/">
+  <meta property="og:image" content="https://torotensor.com/assets/og-image.png">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"ToroTensor Technologies Pvt. Ltd.","url":"https://torotensor.com/","email":"info@torotensor.com","telephone":"+91-9758916888","description":"Applied AI enablement and automation for organizations."}</script>
 </head>
-
 <body>
-  <nav class="nav">
-    <div class="container nav-inner">
-      <a class="product-brand" href="#" aria-label="BusinessAgent OS home">
-        <span class="product-mark">BA</span>
-        <span class="product-name">
-          <strong>BusinessAgent OS</strong>
-          <small>Document Intelligence + Workflow AI</small>
-        </span>
-      </a>
-
-      <div class="nav-links">
-        <a href="#document-intelligence">Document Intelligence</a>
-        <a href="#platform">Platform</a>
-        <a href="#solutions">Solutions</a>
-        <a href="#studio">Studio</a>
-        <a href="#deployment">Pilot</a>
-      </div>
-
-      <div class="nav-actions">
-        <a class="btn btn-ghost" href="#studio">View Simulator</a>
-        <a class="btn btn-primary" href="#request-demo">Discuss Your Workflow</a>
-      </div>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="ToroTensor home"><span class="brand-mark">TT</span><span class="brand-copy"><strong>TOROTENSOR</strong><small>Applied AI Enablement</small></span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-navigation">Menu</button>
+      <nav class="main-nav" id="main-navigation" aria-label="Main navigation">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="corporate-ai-enablement.html">AI Enablement</a>
+        <a href="automation-solutions.html">Automation</a>
+        <a href="use-cases.html">Use Cases</a>
+        <a href="about.html">About</a>
+        <a class="btn btn-primary" href="contact.html">Design Your AI Program</a>
+      </nav>
     </div>
-  </nav>
+  </header>
 
-  <main>
+  <main id="main">
     <section class="hero">
       <div class="container hero-grid">
-        <div>
-          <p class="eyebrow">Document intelligence for controlled business workflows</p>
-          <h1><span class="gradient-text">Documents become</span> business actions.</h1>
-          <p class="lead">
-            Extract information from PDFs, forms, emails, and business records; validate it with AI and human review; then connect it to Excel, APIs, approvals, tasks, follow-ups, and reports.
-          </p>
-
+        <div class="hero-copy">
+          <p class="eyebrow">Company-specific AI enablement</p>
+          <h1>From AI skills to <span>working AI systems.</span></h1>
+          <p class="lead">ToroTensor helps organizations train teams around real business workflows, identify high-value AI opportunities, and implement practical automation—from everyday productivity to advanced document and agentic systems.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#request-demo">Discuss Your Workflow</a>
-            <a class="btn btn-ghost" href="#document-intelligence">See How It Works</a>
+            <a class="btn btn-primary btn-arrow" href="contact.html?interest=enablement">Design Your AI Program</a>
+            <a class="btn btn-secondary" href="contact.html?interest=automation">Discuss an Automation Opportunity</a>
           </div>
-
-          <div class="trust-row">
-            <span class="pill">Private deployment available</span>
-            <span class="pill">Human-in-the-loop</span>
-            <span class="pill">PDF · Excel · Email · API</span>
-            <span class="pill">Pilot with sample data</span>
-          </div>
+          <div class="trust-chips" aria-label="Engagement principles"><span>Role-specific</span><span>Hands-on</span><span>Workflow-led</span><span>Implementation-ready</span></div>
         </div>
-
-        <div class="console" aria-label="BusinessAgent OS live console">
-          <div class="console-top">
-            <span>BUSINESSAGENT_OS // DOCUMENT PIPELINE</span>
-            <span class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>
+        <div class="impact-map" aria-label="ToroTensor adoption-to-impact method">
+          <div class="map-top"><strong>Adoption-to-impact system</strong><span class="live">Workflow active</span></div>
+          <div class="impact-path">
+            <article class="impact-stage"><span class="stage-number">01</span><span class="stage-copy"><b>Assess</b><small>Roles, readiness and recurring work</small></span><span class="stage-status">Discover</span></article>
+            <article class="impact-stage"><span class="stage-number">02</span><span class="stage-copy"><b>Enable</b><small>Company-specific learning and practice</small></span><span class="stage-status">Learn</span></article>
+            <article class="impact-stage"><span class="stage-number">03</span><span class="stage-copy"><b>Apply</b><small>Reusable workflows for daily work</small></span><span class="stage-status">Adopt</span></article>
+            <article class="impact-stage"><span class="stage-number">04</span><span class="stage-copy"><b>Implement</b><small>Selected pilots with human control</small></span><span class="stage-status">Build</span></article>
+            <article class="impact-stage"><span class="stage-number">05</span><span class="stage-copy"><b>Measure</b><small>Adoption, quality and next opportunities</small></span><span class="stage-status">Improve</span></article>
           </div>
-          <div class="console-body">
-            <div class="os-card">
-              <div class="os-card-head">
-                <strong>48-page financial statement</strong>
-                <span class="status">READY</span>
-              </div>
-              <div class="agent-map">
-                <div class="node"><b>OCR</b><span>Pages + layout</span></div>
-                <div class="node"><b>Table Detection</b><span>Rows + columns</span></div>
-                <div class="node"><b>Field Extraction</b><span>Values + entities</span></div>
-                <div class="node"><b>Validation</b><span>Rules + confidence</span></div>
-                <div class="node"><b>Review Queue</b><span>Human exceptions</span></div>
-                <div class="node"><b>Export</b><span>Excel + JSON</span></div>
-              </div>
-            </div>
-            <div class="terminal typing" id="heroTerminal"></div>
-          </div>
+          <p class="map-note">Training becomes valuable when people can apply it to work that matters. Implementation becomes sustainable when teams understand and govern it.</p>
         </div>
       </div>
     </section>
 
-    <section class="metric-strip">
-      <div class="container metric-grid">
-        <div class="metric"><b>PDF</b><span>Documents and scanned records</span></div>
-        <div class="metric"><b>AI + Rules</b><span>Extraction and validation</span></div>
-        <div class="metric"><b>Review</b><span>Human control for exceptions</span></div>
-        <div class="metric"><b>Excel / API</b><span>Structured business output</span></div>
+    <div class="signal-bar"><div class="container signal-inner"><strong>One connected journey</strong><span>Workforce capability</span><span>Workflow redesign</span><span>Responsible adoption</span><span>Practical implementation</span></div></div>
+
+    <section class="section">
+      <div class="container challenge-grid">
+        <div><p class="eyebrow">The adoption gap</p><h2>Access to AI is not the same as business value.</h2><p class="lead">Organizations often buy tools before teams know where, when, and how to use them. Generic workshops and isolated pilots rarely change the work on their own.</p></div>
+        <div class="challenge-panel">
+          <article class="challenge-row"><strong>Tools</strong><p>Employees have AI access, but usage remains inconsistent and difficult to govern.</p></article>
+          <article class="challenge-row"><strong>Training</strong><p>Sessions explain features, but may not produce repeatable role-specific workflows.</p></article>
+          <article class="challenge-row"><strong>Pilots</strong><p>Technology is demonstrated without preparing the people, rules, and review process around it.</p></article>
+          <article class="challenge-row"><strong>ToroTensor</strong><p>Connects capability building with workflow discovery and implementation support.</p></article>
+        </div>
       </div>
     </section>
 
-    <section class="section" id="document-intelligence">
+    <section class="section soft" id="programs">
       <div class="container">
-        <div class="section-head">
-          <div><p class="eyebrow">Document Intelligence</p><h2>From passive files to verified, usable data.</h2></div>
-          <p>Start with one document-heavy workflow. We identify the fields and tables that matter, validate the output, and route uncertain cases for review.</p>
-        </div>
-        <div class="proof-grid">
-          <article class="proof-card"><small>Input</small><strong>Financial PDFs and records</strong><p>Statements, invoices, forms, tables, scans, and multi-country business documents.</p></article>
-          <div class="proof-arrow" aria-hidden="true">→</div>
-          <article class="proof-card"><small>AI processing</small><strong>Extract, structure, validate</strong><p>OCR, layout and table detection, field extraction, rule checks, and confidence scoring.</p></article>
-          <div class="proof-arrow" aria-hidden="true">→</div>
-          <article class="proof-card"><small>Business output</small><strong>Excel, JSON, review queue</strong><p>Verified data ready for reporting, approvals, tasks, follow-ups, systems, or APIs.</p></article>
+        <div class="section-head"><p class="eyebrow">Corporate AI enablement</p><h2>Different teams need different levels of AI capability.</h2><p class="lead">Each engagement is shaped around the organization’s roles, workflows, priorities, and risk boundaries—not a fixed generic syllabus.</p></div>
+        <div class="card-grid">
+          <article class="program-card"><span class="card-index">01</span><span class="audience">Leaders & decision-makers</span><h3>Executive AI Readiness</h3><p>Build shared understanding of AI opportunities, trade-offs, governance, and investment priorities.</p><ul class="clean-list"><li>Opportunity and readiness assessment</li><li>Use-case prioritization</li><li>Responsible adoption principles</li><li>Actionable roadmap</li></ul><a class="text-link" href="corporate-ai-enablement.html#executive">Explore executive enablement →</a></article>
+          <article class="program-card"><span class="card-index">02</span><span class="audience">Business functions</span><h3>AI for Business Teams</h3><p>Help teams apply AI to research, analysis, reporting, communication, and recurring departmental work.</p><ul class="clean-list"><li>Role-specific tools and workflows</li><li>Reusable prompting patterns</li><li>Hands-on business scenarios</li><li>Safe information handling</li></ul><a class="text-link" href="corporate-ai-enablement.html#business">Explore business-team programs →</a></article>
+          <article class="program-card"><span class="card-index">03</span><span class="audience">Technical & advanced users</span><h3>Advanced AI Engineering</h3><p>Move from model usage to reliable AI systems, agents, retrieval, evaluation, and deployment.</p><ul class="clean-list"><li>APIs, RAG and structured outputs</li><li>Agents and orchestration</li><li>Evaluation and observability</li><li>Security and deployment patterns</li></ul><a class="text-link" href="corporate-ai-enablement.html#technical">Explore technical programs →</a></article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="platform">
+    <section class="section-sm">
+      <div class="container briefing">
+        <div><p class="eyebrow">Low-friction starting point</p><h2>AI Readiness & Opportunity Briefing</h2><p>Begin with a focused conversation for leaders and selected teams. Map current adoption, identify meaningful workflow opportunities, and decide whether a workshop, discovery sprint, or implementation pilot is the right next step.</p><a class="btn btn-primary btn-arrow" href="contact.html?interest=briefing">Request a Briefing</a></div>
+        <div class="briefing-steps"><div><b>Current state</b><span>Where AI is already being used</span></div><div><b>Opportunity map</b><span>Where value and risk are concentrated</span></div><div><b>Next engagement</b><span>A practical route, not a generic package</span></div></div>
+      </div>
+    </section>
+
+    <section class="section navy">
       <div class="container">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">The operating layer</p>
-            <h2>Validated information can trigger controlled work.</h2>
-          </div>
-          <p>
-            BusinessAgent OS connects extracted information to the next business step without requiring teams to replace every tool they already use.
-          </p>
-        </div>
-
-        <div class="grid-3">
-          <article class="card">
-            <div class="icon">⌁</div>
-            <h3>Structured extraction</h3>
-            <p>Turn documents and incoming records into consistent fields, tables, summaries, and traceable source references.</p>
-          </article>
-          <article class="card">
-            <div class="icon">◎</div>
-            <h3>Validation and review</h3>
-            <p>Combine AI confidence, business rules, and human review so uncertain or high-impact outputs are checked.</p>
-          </article>
-          <article class="card">
-            <div class="icon">▣</div>
-            <h3>Connected actions</h3>
-            <p>Send approved outputs to Excel, APIs, reports, task queues, follow-ups, or the systems your team already uses.</p>
-          </article>
+        <div class="section-head"><p class="eyebrow">How engagements progress</p><h2>Learning, application, and implementation belong in one system.</h2><p class="lead">The sequence is adapted to each organization. Not every engagement needs every stage.</p></div>
+        <div class="process-grid">
+          <article class="process-step"><span>01</span><h3>Assess</h3><p>Understand roles, readiness, workflows, and constraints.</p></article>
+          <article class="process-step"><span>02</span><h3>Design</h3><p>Shape a company-specific program and opportunity map.</p></article>
+          <article class="process-step"><span>03</span><h3>Enable</h3><p>Run practical sessions for the right level and role.</p></article>
+          <article class="process-step"><span>04</span><h3>Apply</h3><p>Create reusable patterns around real work.</p></article>
+          <article class="process-step"><span>05</span><h3>Implement</h3><p>Build selected pilots with controls and review.</p></article>
+          <article class="process-step"><span>06</span><h3>Measure</h3><p>Review adoption, quality, and the next opportunity.</p></article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="solutions">
+    <section class="section soft">
+      <div class="container" data-tabs>
+        <div class="section-head"><p class="eyebrow">Department-specific scenarios</p><h2>Start with the work—not the AI buzzword.</h2><p class="lead">Training and automation become relevant when they address the decisions, documents, and recurring tasks of a particular team.</p></div>
+        <div class="tabs" role="tablist" aria-label="Department use cases">
+          <button class="tab-button" type="button" role="tab" aria-selected="true" aria-controls="finance-panel">Finance</button>
+          <button class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="hr-panel">HR</button>
+          <button class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="sales-panel">Sales & Customer</button>
+          <button class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="supply-panel">Procurement & Supply</button>
+        </div>
+        <div class="tab-panel usecase-panel active" id="finance-panel" role="tabpanel"><div><span class="usecase-label">Finance & compliance</span><h3>From scattered documents to review-ready records.</h3><p>Teams learn safe analysis and reporting workflows; selected document processes can be converted into extraction, validation, and approval pipelines.</p></div><div class="usecase-flow"><article class="flow-box"><b>Learn</b><p>Analysis, reconciliation, reporting, and responsible use.</p></article><article class="flow-box"><b>Automate</b><p>Invoices, statements, receipts, and structured exports.</p></article><article class="flow-box"><b>Review</b><p>Exceptions, low-confidence fields, and approvals.</p></article></div></div>
+        <div class="tab-panel usecase-panel" id="hr-panel" role="tabpanel"><div><span class="usecase-label">HR & employee operations</span><h3>Use AI without losing judgment or confidentiality.</h3><p>Build role-appropriate capability for communication, policy work, and analysis, while keeping sensitive decisions and records under human control.</p></div><div class="usecase-flow"><article class="flow-box"><b>Learn</b><p>Drafting, summarization, policy assistance, and analysis.</p></article><article class="flow-box"><b>Automate</b><p>Candidate packs, onboarding forms, and document checks.</p></article><article class="flow-box"><b>Review</b><p>Consent, sensitive information, and hiring judgment.</p></article></div></div>
+        <div class="tab-panel usecase-panel" id="sales-panel" role="tabpanel"><div><span class="usecase-label">Sales & customer operations</span><h3>Turn conversations into consistent next actions.</h3><p>Train teams to research, prepare, and communicate more effectively; automate bounded intake, classification, drafting, and follow-up workflows where useful.</p></div><div class="usecase-flow"><article class="flow-box"><b>Learn</b><p>Research, account preparation, proposals, and follow-ups.</p></article><article class="flow-box"><b>Automate</b><p>Enquiry capture, CRM updates, and draft responses.</p></article><article class="flow-box"><b>Review</b><p>Commitments, pricing, sensitive cases, and final sends.</p></article></div></div>
+        <div class="tab-panel usecase-panel" id="supply-panel" role="tabpanel"><div><span class="usecase-label">Procurement & supply chain</span><h3>Connect document-heavy work with operational decisions.</h3><p>Use AI for analysis and supplier communication, then evaluate controlled workflows for purchase orders, invoices, delivery notes, and exceptions.</p></div><div class="usecase-flow"><article class="flow-box"><b>Learn</b><p>Comparison, analysis, reporting, and supplier communication.</p></article><article class="flow-box"><b>Automate</b><p>PO/invoice matching, field extraction, and routing.</p></article><article class="flow-box"><b>Review</b><p>Quantity, price, policy, and delivery exceptions.</p></article></div></div>
+      </div>
+    </section>
+
+    <section class="section navy">
+      <div class="container bridge-grid">
+        <div><p class="eyebrow">From learning to implementation</p><h2>When a valuable workflow emerges, we can help build it.</h2><p class="lead">Models are only one component. Reliable business automation also needs workflow design, validation rules, human approval, integration, evaluation, and maintainability.</p><ul class="clean-list"><li>Document intelligence and structured data</li><li>Knowledge assistants and bounded AI agents</li><li>Workflow automation and human review</li><li>Excel, database, API, and system integration</li></ul><a class="btn btn-light btn-arrow" href="automation-solutions.html">Explore Automation Solutions</a></div>
+        <div class="automation-console" aria-label="Document workflow demonstration"><div class="console-bar"><span class="console-dots"><i></i><i></i><i></i></span><span>Controlled workflow demonstration</span></div><pre class="terminal typing" data-terminal="homepage"></pre></div>
+      </div>
+    </section>
+
+    <section class="section">
       <div class="container">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Focused solutions</p>
-            <h2>Begin with a concrete workflow and measurable output.</h2>
-          </div>
-          <p>
-            Best suited for document-heavy and workflow-driven teams that depend on PDFs, spreadsheets, email, WhatsApp, and manual follow-ups.
-          </p>
-        </div>
-
-        <div class="agent-stack">
-          <div class="agent-tile"><b>Financial Document Processing</b><span>Extract tables and fields from statements, invoices, forms, and recurring financial records.</span></div>
-          <div class="agent-tile"><b>Document Review Workflows</b><span>Flag missing information, inconsistent values, low-confidence fields, and policy exceptions.</span></div>
-          <div class="agent-tile"><b>Enquiries and Quotations</b><span>Structure incoming requirements, identify missing details, draft replies, and track follow-ups.</span></div>
-          <div class="agent-tile"><b>Private Knowledge Assistants</b><span>Turn SOPs, manuals, policies, and internal documents into grounded question-answering systems.</span></div>
+        <div class="section-head"><p class="eyebrow">Applied workflow demonstration</p><h2>International travel-finance document processing</h2><p class="lead">A proof of concept showing how mixed business documents can become validated, review-ready records. It uses fictional inputs and illustrative outputs.</p></div>
+        <div class="case-card">
+          <div><span class="case-badge">Proof of concept</span><h3>PDFs, scanned invoices, and handwritten notes</h3><p>Documents from different countries and formats are classified, fields are extracted, business rules are applied, and uncertain information is routed for human review.</p><div class="button-row"><a class="btn btn-primary" href="demo/index.html">Open Interactive Demo</a><a class="btn btn-secondary" href="contact.html?interest=document-intelligence">Discuss a Similar Workflow</a></div></div>
+          <div class="pipeline"><div class="pipeline-item"><span>1</span><div><b>Receive and classify</b><small>Identify document type, country, language, and source.</small></div></div><div class="pipeline-item"><span>2</span><div><b>Extract and normalize</b><small>Capture vendors, dates, currencies, tables, taxes, and totals.</small></div></div><div class="pipeline-item"><span>3</span><div><b>Validate and review</b><small>Flag missing, inconsistent, or low-confidence information.</small></div></div><div class="pipeline-item"><span>4</span><div><b>Export and connect</b><small>Send approved records to Excel, a database, or an API.</small></div></div></div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="setup">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Simple setup</p>
-            <h2>Describe the workflow. Deploy the agents.</h2>
-          </div>
-          <p>
-            Setup should be easy for a business owner. No need to understand prompts, APIs, infrastructure, or open-source agent frameworks.
-          </p>
-        </div>
+    <section class="section soft">
+      <div class="container credibility-grid">
+        <div class="credibility-main"><p class="eyebrow">Why ToroTensor</p><h2>Research-informed. Business-practical.</h2><p>ToroTensor brings together technical AI depth, experience explaining complex ideas clearly, and a deployment mindset focused on useful, controlled outcomes.</p><p><strong>From AI Strategy to Real Execution.</strong></p><a class="btn btn-light" href="about.html">About ToroTensor</a></div>
+        <div class="credibility-points"><article><b>Company-specific</b><p>Programs are shaped around roles, workflows, and constraints.</p></article><article><b>Role-aware</b><p>Leaders, business teams, and builders receive different depth.</p></article><article><b>Implementation-minded</b><p>Learning can progress into selected workflow pilots.</p></article><article><b>Human-controlled</b><p>Review and accountability remain part of the system.</p></article></div>
+      </div>
+    </section>
 
-        <div class="grid-3">
-          <article class="card"><div class="icon">1</div><h3>Select business type</h3><p>Start with a standard segment or define a custom business workflow.</p></article>
-          <article class="card"><div class="icon">2</div><h3>Connect tools</h3><p>Begin with forms, spreadsheets, emails, PDFs, and sample messages. Add deeper integrations later.</p></article>
-          <article class="card"><div class="icon">3</div><h3>Map process</h3><p>Define what comes in, who handles it, what needs approval, and what report the owner wants.</p></article>
-          <article class="card"><div class="icon">4</div><h3>Generate agent plan</h3><p>The platform proposes agents, rules, tasks, approvals, and output formats.</p></article>
-          <article class="card"><div class="icon">5</div><h3>Run simulation</h3><p>Validate the workflow with dummy or sample data before going live.</p></article>
-          <article class="card"><div class="icon">6</div><h3>Go live safely</h3><p>Deploy with human approvals, audit logs, business memory, and owner dashboards.</p></article>
+    <section class="section">
+      <div class="narrow">
+        <div class="section-head center"><p class="eyebrow">Frequently asked</p><h2>Practical answers before we begin.</h2></div>
+        <div class="faq-list">
+          <details><summary>How is this different from a generic AI workshop?</summary><p>We begin with your teams, workflows, goals, and constraints. Exercises and recommended next steps are designed around where AI may realistically support your organization.</p></details>
+          <details><summary>Do participants need technical experience?</summary><p>No for business-team programs. Technical tracks are designed separately for developers, data professionals, product teams, and advanced users.</p></details>
+          <details><summary>What happens after training?</summary><p>The engagement can conclude with reusable workflows and an opportunity roadmap, or continue into a discovery sprint or selected implementation pilot.</p></details>
+          <details><summary>Which AI tools are covered?</summary><p>Tool selection depends on the organization’s approved environment and goals. The emphasis is on transferable methods, responsible use, and workflow design rather than one vendor.</p></details>
+          <details><summary>How is pricing decided?</summary><p>Pricing is tailored after understanding the audience, scope, customization, delivery requirements, and any implementation component.</p></details>
         </div>
       </div>
     </section>
 
-    <section class="section" id="studio">
-      <div class="container">
-        <div class="studio">
-          <div class="studio-top">
-            <div>
-              <p class="eyebrow">Workflow Studio</p>
-              <h2>See a workflow moving from input to outcome.</h2>
-              <p>This continuously running simulator illustrates the orchestration flow. A guided session uses representative or client-approved sample data.</p>
-            </div>
-            <label class="select-wrap">
-              Business problem
-              <select id="scenarioSelect">
-                <option value="customer">Customer operations</option>
-                <option value="sales">Sales and quotations</option>
-                <option value="support">Customer support</option>
-                <option value="documents">Document processing</option>
-                <option value="payments">Payment reminders</option>
-                <option value="operations">Operations tracking</option>
-              </select>
-            </label>
-          </div>
-
-          <div class="sim-grid">
-            <div class="workflow-list" id="workflowSteps"></div>
-            <div class="sim-output">
-              <div class="output-head">
-                <strong>LIVE EXECUTION CONSOLE</strong>
-                <span class="chip">SIMULATED</span>
-              </div>
-              <div class="output-body output-terminal" id="simOutput"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="difference">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Why different</p>
-            <h2>Built for business deployment, not DIY experimentation.</h2>
-          </div>
-          <p>
-            General autonomous agents can perform tasks. BusinessAgent OS focuses on workflow mapping, approvals, business memory, dashboards, and recurring operational outcomes.
-          </p>
-        </div>
-
-        <div class="card comparison">
-          <table>
-            <thead>
-              <tr>
-                <th>Capability</th>
-                <th>Generic agent tools</th>
-                <th>BusinessAgent OS</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td><strong>Primary user</strong></td><td>Developers, power users, technical teams</td><td><span class="yes">Business owners and operations teams</span></td></tr>
-              <tr><td><strong>Setup</strong></td><td>Manual configuration, prompts, tools, and maintenance</td><td><span class="yes">Guided onboarding with workflow templates</span></td></tr>
-              <tr><td><strong>Workflow view</strong></td><td>Task execution</td><td><span class="yes">End-to-end process mapping with roles and rules</span></td></tr>
-              <tr><td><strong>Control</strong></td><td>Autonomy can be risky without guardrails</td><td><span class="yes">Human approvals, audit trail, escalation rules</span></td></tr>
-              <tr><td><strong>Memory</strong></td><td>General context</td><td><span class="yes">Customer, task, quote, payment, document, and report memory</span></td></tr>
-              <tr><td><strong>Outcome</strong></td><td>Task completed</td><td><span class="yes">Business pipeline, accountability, delays, and owner visibility</span></td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="deployment">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Deployment path</p>
-            <h2>Start with a guided pilot. Scale to production workflows.</h2>
-          </div>
-          <p>
-            The product starts with a controlled pilot and grows into a managed business agent layer connected with the client’s existing tools.
-          </p>
-        </div>
-
-        <div class="deployment">
-          <article class="card">
-            <div class="icon">▤</div>
-            <h3>Phased rollout</h3>
-            <p>Instead of replacing existing systems, BusinessAgent OS adds an automation and visibility layer around what the business already uses.</p>
-            <ul class="clean">
-              <li>Cloud pilot with sample data</li>
-              <li>Client-specific workspace</li>
-              <li>Integrations with forms, sheets, email, CRM, or WhatsApp</li>
-              <li>Human approvals and audit trail</li>
-              <li>Monthly workflow improvement</li>
-            </ul>
-          </article>
-
-          <div class="timeline">
-            <div class="timeline-row"><b>1</b><div><strong>Discover</strong><p>Understand the business problem, existing tools, team roles, and owner reporting needs.</p></div></div>
-            <div class="timeline-row"><b>2</b><div><strong>Prototype</strong><p>Build a guided workflow with dummy or sample data and validate outputs.</p></div></div>
-            <div class="timeline-row"><b>3</b><div><strong>Deploy</strong><p>Configure rules, approvals, task owners, and reporting dashboards.</p></div></div>
-            <div class="timeline-row"><b>4</b><div><strong>Scale</strong><p>Add more agents, integrations, business memory, and recurring managed support.</p></div></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="faq">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">FAQ</p>
-            <h2>Common questions before a guided demo.</h2>
-          </div>
-          <p>We scope each engagement around the workflow, document types, output requirements, review needs, integrations, and deployment choice.</p>
-        </div>
-
-        <div class="faq-grid">
-          <article class="faq"><h3>Which teams are the best fit?</h3><p>Document-heavy and workflow-driven teams handling recurring PDFs, spreadsheets, emails, records, approvals, or manual follow-ups.</p></article>
-          <article class="faq"><h3>Will it replace staff?</h3><p>No. The product is designed to support staff with capture, drafting, reminders, tracking, and reporting while keeping humans in control.</p></article>
-          <article class="faq"><h3>How is this different from general AI agents?</h3><p>The starting point is a defined business input and a verifiable output, supported by validation rules, review checkpoints, and controlled downstream actions.</p></article>
-          <article class="faq"><h3>Can we start without full integrations?</h3><p>Yes. A pilot can start with sample data, forms, spreadsheets, email exports, and documents. Deeper integrations can be added later.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="request-demo">
-      <div class="container">
-        <div class="request">
-          <div class="section-head">
-            <div>
-              <p class="eyebrow">Tailored proposal</p>
-              <h2>Show us the repetitive work you want to improve.</h2>
-            </div>
-            <p>
-              Share the document type, current process, desired output, and review requirements. We will recommend a focused pilot and provide a scope-based proposal.
-            </p>
-          </div>
-
-          <form id="demoForm" class="form-grid">
-            <label>Name<input id="name" type="text" placeholder="Your name" required></label>
-            <label>Organization<input id="company" type="text" placeholder="Organization name"></label>
-            <label>Work email<input id="email" type="email" placeholder="you@company.com" required></label>
-            <label>Phone / WhatsApp<input id="phone" type="tel" placeholder="+91..."></label>
-            <label>Primary workflow
-              <select id="segment">
-                <option>Financial document processing</option>
-                <option>Forms and records extraction</option>
-                <option>Document review and validation</option>
-                <option>Enquiries and quotations</option>
-                <option>Private knowledge assistant</option>
-                <option>Another repetitive workflow</option>
-              </select>
-            </label>
-            <label class="full">Current process and desired output
-              <textarea id="message" rows="5" placeholder="Example: We receive financial PDFs from several countries and need validated fields and tables in a standard Excel format."></textarea>
-            </label>
-            <label class="full">
-              <button class="btn btn-primary" type="submit">Request a Tailored Proposal</button>
-              <span class="subtle-note">This opens your email app with the details prepared for info@torotensor.com.</span>
-            </label>
-          </form>
-
-          <div class="form-note">
-            <span>▸</span>
-            <span>Prefer email? Write directly to <a href="mailto:info@torotensor.com">info@torotensor.com</a>. Pricing is shared after the workflow and deployment requirements are understood.</span>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section class="section-sm"><div class="container cta-band"><div class="cta-content"><p class="eyebrow">Start with the work that matters</p><h2>Build AI capability around what your teams actually do.</h2><p class="lead">Tell us where your organization wants clarity, adoption, or automation. We will recommend a focused starting point.</p><div class="button-row"><a class="btn btn-light btn-arrow" href="contact.html">Design a Company-Specific AI Program</a><a class="btn btn-secondary" href="mailto:info@torotensor.com">Email info@torotensor.com</a></div></div></div></section>
   </main>
 
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div class="product-brand">
-        <span class="product-mark">BA</span>
-        <span class="product-name">
-          <strong>BusinessAgent OS</strong>
-          <small>Document Intelligence + Workflow AI</small>
-        </span>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><a class="brand" href="index.html"><span class="brand-mark">TT</span><span class="brand-copy"><strong>TOROTENSOR</strong><small>Applied AI Enablement</small></span></a><p class="footer-note">Helping organizations build practical AI capability and turn selected workflows into working systems.</p></div>
+        <div class="footer-col"><h3>Explore</h3><div class="footer-links"><a href="corporate-ai-enablement.html">Corporate AI Enablement</a><a href="automation-solutions.html">Automation Solutions</a><a href="use-cases.html">Use Cases</a><a href="demo/index.html">Workflow Demo</a></div></div>
+        <div class="footer-col"><h3>Contact</h3><div class="footer-links"><a href="mailto:info@torotensor.com">info@torotensor.com</a><a href="tel:+919758916888">+91-9758916888</a><a href="https://wa.me/919758916888">WhatsApp</a><a href="contact.html">Start a conversation</a></div></div>
       </div>
-      <div>
-        <p class="mini">© <span id="year"></span> ToroTensor Technologies Pvt Ltd. BusinessAgent OS. All rights reserved.</p>
-        <p class="mini">Documents become business actions. · <a href="mailto:info@torotensor.com">info@torotensor.com</a></p>
-      </div>
+      <div class="footer-bottom"><span>© <span data-year></span> ToroTensor Technologies Pvt. Ltd. All rights reserved.</span><span><a href="privacy.html">Privacy</a> · From AI Strategy to Real Execution.</span></div>
     </div>
   </footer>
-
-  <script>
-    const heroLines = [
-      "> input received: 48-page financial statement",
-      "> running OCR and layout detection...",
-      "> detecting tables, fields, and source references...",
-      "> validating values against business rules...",
-      "> routing low-confidence fields to review queue...",
-      "> exporting structured JSON and Excel report...",
-      "> status: verified output ready"
-    ];
-
-    const scenarios = {
-      customer: {
-        steps: [
-          ["Receive", "Customer message, email, or form entry arrives from daily business channels."],
-          ["Classify", "Agent identifies intent, urgency, customer details, and missing information."],
-          ["Act", "It creates a lead/task, drafts reply, schedules follow-up, and updates pipeline."],
-          ["Approve", "Important replies or commitments wait for human approval."],
-          ["Report", "Owner sees daily summary, pending follow-ups, delayed tasks, and opportunity value."]
-        ],
-        output: `[sim] Loading workflow profile: customer_operations
-[ok] Detecting channel inputs
-[ok] Building controlled agent plan
-
-BUSINESS PROBLEM:
-Customer work is scattered across messages, calls, email, and staff memory.
-
-AGENTS DEPLOYED:
-- Customer Operations Agent
-- Follow-up Agent
-- Task Agent
-- Owner Report Agent
-
-RULES:
-- Capture every qualified customer input
-- Draft replies but keep approvals enabled
-- Track all follow-ups until closure
-- Report pending work to owner daily
-
-OUTCOME:
-Customer work becomes visible, trackable, and recoverable.`
-      },
-      sales: {
-        steps: [
-          ["Capture", "Sales request is captured from message, email, form, or spreadsheet."],
-          ["Qualify", "Agent extracts product, quantity, urgency, value, location, and missing details."],
-          ["Quote", "Quotation Agent drafts pricing and asks for approval before sending."],
-          ["Follow-up", "Follow-up Agent tracks next action until the deal is closed or lost."],
-          ["Report", "Owner Report Agent shows pipeline value, delayed quotes, and pending actions."]
-        ],
-        output: `[sim] Loading workflow profile: sales_and_quotations
-[ok] Reading pricing and approval rules
-[ok] Creating quote-control workflow
-
-BUSINESS PROBLEM:
-Sales enquiries are received, but quotations and follow-ups are not consistently tracked.
-
-AGENTS DEPLOYED:
-- Lead Agent
-- Quotation Agent
-- Follow-up Agent
-- Owner Report Agent
-
-RULES:
-- No quotation without approval
-- High-value leads assigned to senior team
-- Follow-up every 24 hours until status changes
-- Owner receives daily pipeline report
-
-OUTCOME:
-No enquiry gets buried. Every quote and opportunity becomes visible.`
-      },
-      support: {
-        steps: [
-          ["Receive", "Support request arrives from WhatsApp, email, website, or staff entry."],
-          ["Classify", "Agent identifies issue type, urgency, customer, and required department."],
-          ["Respond", "Support Agent drafts reply or asks for missing information."],
-          ["Escalate", "Critical cases are escalated to the right team with context."],
-          ["Track", "Owner dashboard shows open, delayed, resolved, and repeated issues."]
-        ],
-        output: `[sim] Loading workflow profile: customer_support
-[ok] Building issue classification
-[ok] Building escalation logic
-
-BUSINESS PROBLEM:
-Support requests are handled manually, but repeated issues and delayed responses are hard to track.
-
-AGENTS DEPLOYED:
-- Support Agent
-- Task Agent
-- Escalation Agent
-- Report Agent
-
-RULES:
-- Urgent issues escalate immediately
-- Early-stage replies require approval
-- Repeated complaints are flagged
-- Daily support summary goes to owner
-
-OUTCOME:
-Support becomes consistent, trackable, and accountable.`
-      },
-      documents: {
-        steps: [
-          ["Upload", "PDFs, forms, invoices, brochures, SOPs, or policy documents are added."],
-          ["Extract", "Document Agent extracts key facts, dates, values, obligations, and missing items."],
-          ["Generate", "It prepares summaries, checklists, replies, reports, or draft documents."],
-          ["Verify", "Human approval is required before external use."],
-          ["Store", "Important facts are added to business memory for future workflows."]
-        ],
-        output: `[sim] Loading workflow profile: document_processing
-[ok] Indexing document actions
-[ok] Creating review checkpoints
-
-BUSINESS PROBLEM:
-Documents contain business-critical information, but they remain passive files.
-
-AGENTS DEPLOYED:
-- Document Agent
-- Checklist Agent
-- Drafting Agent
-- Memory Agent
-
-RULES:
-- Source document references preserved
-- Human review required for final output
-- Missing information is flagged
-- Key data stored in business memory
-
-OUTCOME:
-Documents become actionable business inputs.`
-      },
-      payments: {
-        steps: [
-          ["Detect", "Agent identifies pending payments from notes, sheets, invoices, or status fields."],
-          ["Prioritize", "It ranks pending amounts by due date, value, and risk."],
-          ["Draft", "Payment Reminder Agent drafts polite reminders."],
-          ["Approve", "Human approval is required before sending reminders."],
-          ["Track", "Owner report shows overdue, collected, and at-risk revenue."]
-        ],
-        output: `[sim] Loading workflow profile: payment_reminders
-[ok] Calculating follow-up priorities
-[ok] Enabling approval-controlled reminders
-
-BUSINESS PROBLEM:
-Pending revenue exists, but payment follow-up depends on staff memory and manual tracking.
-
-AGENTS DEPLOYED:
-- Payment Reminder Agent
-- Invoice Status Agent
-- Follow-up Agent
-- Owner Report Agent
-
-RULES:
-- No reminder sent without approval
-- Tone changes by customer type and delay
-- High-value overdue amounts are escalated
-- Collections report sent daily/weekly
-
-OUTCOME:
-Pending revenue becomes visible and follow-up becomes disciplined.`
-      },
-      operations: {
-        steps: [
-          ["Map", "Business process is mapped from request to delivery or completion."],
-          ["Assign", "Task Agent assigns responsibility and deadlines to team members."],
-          ["Monitor", "Delays, dependencies, and pending approvals are tracked."],
-          ["Notify", "Agent sends internal reminders and escalations."],
-          ["Report", "Owner sees bottlenecks, team accountability, and daily progress."]
-        ],
-        output: `[sim] Loading workflow profile: operations_tracking
-[ok] Mapping execution dependencies
-[ok] Building delay detection rules
-
-BUSINESS PROBLEM:
-Daily operations move across people, messages, notes, and tools without a single execution view.
-
-AGENTS DEPLOYED:
-- Workflow Mapper
-- Task Agent
-- Delay Detection Agent
-- Owner Report Agent
-
-RULES:
-- Every task has owner and due date
-- Delays are escalated
-- Approvals are tracked
-- Daily status report sent to owner
-
-OUTCOME:
-Execution becomes visible without replacing existing tools.`
-      }
-    };
-
-    const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-    let heroToken = 0;
-    let scenarioToken = 0;
-    let activeScenarioKey = "customer";
-
-    const heroLiveLines = [
-      "> watcher: new document queue active",
-      "> validation rules... active",
-      "> source references... preserved",
-      "> human review queue... synchronized",
-      "> Excel export service... ready",
-      "> pipeline status... supervised processing"
-    ];
-
-    const scenarioLiveLines = {
-      customer: [
-        "[live] new customer signal scan complete",
-        "[live] follow-up queue refreshed",
-        "[live] owner summary delta updated",
-        "[live] approval gate waiting for human confirmation"
-      ],
-      sales: [
-        "[live] quotation queue scanned",
-        "[live] high-value lead detector active",
-        "[live] pending quote follow-up scheduled",
-        "[live] pipeline value recalculated"
-      ],
-      support: [
-        "[live] ticket urgency classifier active",
-        "[live] repeated issue scan complete",
-        "[live] escalation route verified",
-        "[live] support summary updating"
-      ],
-      documents: [
-        "[live] document index watcher active",
-        "[live] missing-field detector ready",
-        "[live] citation-safe extraction enabled",
-        "[live] review checkpoint waiting"
-      ],
-      payments: [
-        "[live] overdue amount scan complete",
-        "[live] reminder tone rules active",
-        "[live] collection priority queue refreshed",
-        "[live] approval required before reminder"
-      ],
-      operations: [
-        "[live] execution dependency graph scanned",
-        "[live] delayed task detector active",
-        "[live] team ownership map refreshed",
-        "[live] bottleneck summary updating"
-      ]
-    };
-
-    function nowTime(){
-      return new Date().toLocaleTimeString([], {hour:"2-digit", minute:"2-digit", second:"2-digit"});
-    }
-
-    function autoScroll(target){
-      target.scrollTop = target.scrollHeight;
-    }
-
-    async function typeAppend(target, text, speed, isActive){
-      target.classList.add("live");
-      for(let i = 0; i < text.length; i++){
-        if(!isActive()){ return false; }
-        target.textContent += text[i];
-        autoScroll(target);
-        await sleep(speed);
-      }
-      return true;
-    }
-
-    function trimLines(target, maxLines){
-      const lines = target.textContent.split("\n");
-      if(lines.length > maxLines){
-        target.textContent = lines.slice(lines.length - maxLines).join("\n");
-        autoScroll(target);
-      }
-    }
-
-    async function startHeroTerminal(){
-      const token = ++heroToken;
-      const target = document.getElementById("heroTerminal");
-      target.textContent = "";
-      target.classList.add("live");
-
-      const bootText = heroLines.join("\n") + "\n> live monitor started @ " + nowTime();
-      await typeAppend(target, bootText, 16, () => token === heroToken);
-
-      let i = 0;
-      while(token === heroToken){
-        const line = heroLiveLines[i % heroLiveLines.length];
-        await sleep(550);
-        await typeAppend(target, "\n" + line + " [" + nowTime() + "]", 9, () => token === heroToken);
-        trimLines(target, 18);
-        i++;
-      }
-    }
-
-    async function startScenarioTerminal(key){
-      const token = ++scenarioToken;
-      const target = document.getElementById("simOutput");
-      const scenario = scenarios[key];
-      target.textContent = "";
-      target.classList.add("live");
-
-      const bootText = scenario.output + "\n\n[live] monitor started @ " + nowTime();
-      await typeAppend(target, bootText, 8, () => token === scenarioToken);
-
-      let i = 0;
-      while(token === scenarioToken){
-        const liveLines = scenarioLiveLines[key] || scenarioLiveLines.customer;
-        const line = liveLines[i % liveLines.length];
-        await sleep(520);
-        await typeAppend(target, "\n" + line + " [" + nowTime() + "]", 8, () => token === scenarioToken);
-        trimLines(target, 32);
-        i++;
-      }
-    }
-
-    function renderScenario(key){
-      activeScenarioKey = key;
-      const s = scenarios[key];
-
-      document.getElementById("workflowSteps").innerHTML = s.steps.map((step, idx) => `
-        <div class="step">
-          <span class="step-num">${idx + 1}</span>
-          <div><strong>${step[0]}</strong><p>${step[1]}</p></div>
-        </div>
-      `).join("");
-
-      startScenarioTerminal(key);
-    }
-
-    document.getElementById("scenarioSelect").addEventListener("change", e => renderScenario(e.target.value));
-    renderScenario("customer");
-    startHeroTerminal();
-
-    document.getElementById("demoForm").addEventListener("submit", function(e){
-      e.preventDefault();
-      const name = document.getElementById("name").value.trim();
-      const company = document.getElementById("company").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const phone = document.getElementById("phone").value.trim();
-      const segment = document.getElementById("segment").value;
-      const message = document.getElementById("message").value.trim();
-
-      const subject = encodeURIComponent("Guided Demo Request - BusinessAgent OS");
-      const body = encodeURIComponent(
-`Name: ${name}
-Company: ${company}
-Email: ${email}
-Phone/WhatsApp: ${phone}
-Primary workflow: ${segment}
-
-Business workflow to automate:
-${message}`
-      );
-
-      window.location.href = `mailto:info@torotensor.com?subject=${subject}&body=${body}`;
-    });
-
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+  <script src="assets/script.js" defer></script>
 </body>
 </html>

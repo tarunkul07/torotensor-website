@@ -1,14 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <defs><linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#061832"/><stop offset=".72" stop-color="#0A2A58"/><stop offset="1" stop-color="#061832"/></linearGradient><linearGradient id="accent" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#0A4DFF"/><stop offset="1" stop-color="#FF6A00"/></linearGradient></defs>
-  <rect width="1200" height="630" fill="url(#bg)"/>
-  <circle cx="1040" cy="80" r="180" fill="#FF6A00" opacity=".13"/>
-  <circle cx="110" cy="40" r="220" fill="#0A4DFF" opacity=".20"/>
-  <rect x="70" y="70" width="86" height="86" rx="24" fill="url(#accent)"/>
-  <text x="113" y="126" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" font-weight="900" fill="white">TT</text>
-  <text x="180" y="105" font-family="Arial, sans-serif" font-size="34" font-weight="900" fill="#FFFFFF">TORO<tspan fill="#FF6A00">TENSOR</tspan></text>
-  <text x="70" y="265" font-family="Arial, sans-serif" font-size="78" font-weight="900" fill="#FFFFFF">AI Operations Agents</text>
-  <text x="70" y="350" font-family="Arial, sans-serif" font-size="43" font-weight="700" fill="#DDE7FF">From messages to business actions.</text>
-  <text x="70" y="440" font-family="Arial, sans-serif" font-size="28" font-weight="600" fill="#BFD1FF">Leads • Quotations • Follow-ups • Tasks • Owner Reports</text>
-  <rect x="70" y="500" width="260" height="58" rx="29" fill="url(#accent)"/>
-  <text x="200" y="538" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="900" fill="#FFFFFF">Launch Demo</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">ToroTensor — From AI skills to working AI systems</title>
+  <desc id="desc">Social sharing card for corporate AI enablement and workflow automation.</desc>
+  <defs>
+    <linearGradient id="mark" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#155EEF"/><stop offset=".68" stop-color="#0B3FB7"/><stop offset="1" stop-color="#F97316"/></linearGradient>
+    <radialGradient id="glow" cx="1" cy="0" r="1"><stop stop-color="#F97316" stop-opacity=".15"/><stop offset="1" stop-color="#F97316" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#F7F9FC"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <circle cx="1100" cy="500" r="250" fill="none" stroke="#155EEF" stroke-opacity=".07" stroke-width="44"/>
+  <g transform="translate(76 64)"><rect width="74" height="74" rx="22" fill="url(#mark)"/><text x="37" y="48" text-anchor="middle" font-family="Arial,sans-serif" font-size="27" font-weight="900" fill="#fff">TT</text><text x="97" y="34" font-family="Arial,sans-serif" font-size="27" font-weight="900" letter-spacing="2" fill="#0B1F3A">TOROTENSOR</text><text x="97" y="62" font-family="Arial,sans-serif" font-size="15" font-weight="700" letter-spacing="2" fill="#667085">APPLIED AI ENABLEMENT</text></g>
+  <text x="76" y="266" font-family="Arial,sans-serif" font-size="70" font-weight="800" letter-spacing="-3" fill="#0B1F3A">From AI skills to</text>
+  <text x="76" y="348" font-family="Arial,sans-serif" font-size="70" font-weight="800" letter-spacing="-3" fill="#155EEF">working AI systems.</text>
+  <text x="76" y="433" font-family="Arial,sans-serif" font-size="27" font-weight="600" fill="#475467">Company-specific enablement • Workflow automation</text>
+  <g transform="translate(76 500)"><rect width="240" height="50" rx="25" fill="#EAF1FF"/><text x="120" y="32" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="#155EEF">Role-specific learning</text><rect x="256" width="232" height="50" rx="25" fill="#FFF0E7"/><text x="372" y="32" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="#B54708">Controlled workflows</text></g>
 </svg>
