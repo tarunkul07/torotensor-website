@@ -172,10 +172,11 @@ const interestField = document.querySelector('[name="interest"]');
 if (interestField && params.get('interest')) {
   const interestMap = {
     briefing: 'AI Readiness & Opportunity Briefing',
-    enablement: 'Corporate AI Enablement',
+    enablement: 'Enterprise AI Enablement',
+    'capability-building': 'AI Capability Building',
     'discovery-sprint': 'Workflow Discovery Sprint',
-    automation: 'AI Automation / Document Intelligence',
-    'document-intelligence': 'AI Automation / Document Intelligence'
+    automation: 'AI Workflow Automation / Document Intelligence',
+    'document-intelligence': 'AI Workflow Automation / Document Intelligence'
   };
   const requestedInterest = interestMap[params.get('interest')] || params.get('interest');
   if ([...interestField.options].some((option) => option.value === requestedInterest)) {

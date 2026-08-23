@@ -1,10 +1,10 @@
 # ToroTensor enterprise website
 
-Static, multi-page website for ToroTensor Technologies Pvt. Ltd.
+Static, multi-page website for ToroTensor Technologies Pvt Ltd.
 
 ## Positioning
 
-- Primary offer: company-specific corporate AI enablement
+- Primary offer: Enterprise AI Enablement
 - Secondary offer: AI workflow automation and document intelligence
 - Lead journey: readiness briefing → tailored program → workflow discovery → focused pilot
 - The workflow demo uses fictional sample data and is not presented as a client deployment

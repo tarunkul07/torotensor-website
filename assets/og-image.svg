@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
   <title id="title">ToroTensor — From AI skills to working AI systems</title>
-  <desc id="desc">Social sharing card for corporate AI enablement and workflow automation.</desc>
+  <desc id="desc">Social sharing card for Enterprise AI Enablement and AI Workflow Automation.</desc>
   <defs>
     <linearGradient id="mark" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#155EEF"/><stop offset=".68" stop-color="#0B3FB7"/><stop offset="1" stop-color="#F97316"/></linearGradient>
     <radialGradient id="glow" cx="1" cy="0" r="1"><stop stop-color="#F97316" stop-opacity=".15"/><stop offset="1" stop-color="#F97316" stop-opacity="0"/></radialGradient>
@@ -8,9 +8,9 @@
   <rect width="1200" height="630" fill="#F7F9FC"/>
   <rect width="1200" height="630" fill="url(#glow)"/>
   <circle cx="1100" cy="500" r="250" fill="none" stroke="#155EEF" stroke-opacity=".07" stroke-width="44"/>
-  <g transform="translate(76 64)"><rect width="74" height="74" rx="22" fill="url(#mark)"/><text x="37" y="48" text-anchor="middle" font-family="Arial,sans-serif" font-size="27" font-weight="900" fill="#fff">TT</text><text x="97" y="34" font-family="Arial,sans-serif" font-size="27" font-weight="900" letter-spacing="2" fill="#0B1F3A">TOROTENSOR</text><text x="97" y="62" font-family="Arial,sans-serif" font-size="15" font-weight="700" letter-spacing="2" fill="#667085">APPLIED AI ENABLEMENT</text></g>
+  <g transform="translate(76 64)"><rect width="74" height="74" rx="22" fill="url(#mark)"/><text x="37" y="48" text-anchor="middle" font-family="Arial,sans-serif" font-size="27" font-weight="900" fill="#fff">TT</text><text x="97" y="34" font-family="Arial,sans-serif" font-size="27" font-weight="900" letter-spacing="2" fill="#0B1F3A">TOROTENSOR</text><text x="97" y="62" font-family="Arial,sans-serif" font-size="15" font-weight="700" letter-spacing="2" fill="#667085">ENTERPRISE AI ENABLEMENT</text></g>
   <text x="76" y="266" font-family="Arial,sans-serif" font-size="70" font-weight="800" letter-spacing="-3" fill="#0B1F3A">From AI skills to</text>
   <text x="76" y="348" font-family="Arial,sans-serif" font-size="70" font-weight="800" letter-spacing="-3" fill="#155EEF">working AI systems.</text>
-  <text x="76" y="433" font-family="Arial,sans-serif" font-size="27" font-weight="600" fill="#475467">Company-specific enablement • Workflow automation</text>
-  <g transform="translate(76 500)"><rect width="240" height="50" rx="25" fill="#EAF1FF"/><text x="120" y="32" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="#155EEF">Role-specific learning</text><rect x="256" width="232" height="50" rx="25" fill="#FFF0E7"/><text x="372" y="32" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="#B54708">Controlled workflows</text></g>
+  <text x="76" y="433" font-family="Arial,sans-serif" font-size="27" font-weight="600" fill="#475467">AI capability building • AI workflow automation</text>
+  <g transform="translate(76 500)"><rect width="240" height="50" rx="25" fill="#EAF1FF"/><text x="120" y="32" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="#155EEF">AI-ready teams</text><rect x="256" width="232" height="50" rx="25" fill="#FFF0E7"/><text x="372" y="32" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="#B54708">Controlled workflows</text></g>
 </svg>
